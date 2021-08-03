@@ -6,6 +6,8 @@ const GraphQLDate = require('./graphql_date');
 const about = require('./about');
 const issue = require('./issue');
 const auth = require('./auth');
+const menu = require('./menu');
+const order = require('./order');
 
 const resolvers = {
   Query: {
@@ -14,6 +16,17 @@ const resolvers = {
     issueList: issue.list,
     issue: issue.get,
     issueCounts: issue.counts,
+
+    menuList: menu.listDish,
+    dish: menu.getDish,
+    stockList: menu.listStock,
+    stock: menu.getStock,
+    commentList: menu.listComment,
+
+    orderList: order.listOrder,
+    order: order.getOrder,
+    orderStatusList: order.listOrderStatus,
+    orderStatus: order.getOrderStatus,
   },
   Mutation: {
     setAboutMessage: about.setMessage,
@@ -21,6 +34,11 @@ const resolvers = {
     issueUpdate: issue.update,
     issueDelete: issue.delete,
     issueRestore: issue.restore,
+
+    stockUpdate: menu.updateStock,
+    commentAdd: menu.addComment,
+    orderAdd: order.addOrder,
+    orderUpdate: order.updateOrder,
   },
   GraphQLDate,
 };

@@ -61,6 +61,86 @@ input IssueUpdateInputs {
     description: String
 }
 
+#### Awesome Dimsum
+enum OrderStatusType {
+    New
+    InProgress
+    ReadyForPickup
+    Complete
+    Cancelled
+}
+
+type Dish {
+    _id: ID!
+    id: Int!
+    dishId: Int!
+    name: String!
+    image: String!
+    category: String!
+    price: Float!
+    description: String!
+}
+
+type DishStock {
+    dishId: Int!
+    stock: Int!
+}
+
+type Comment {
+    _id: ID!
+    id: Int!
+    dishId: Int!
+    rating: Int!
+    comment: String!
+    author: String!
+    date: GraphQLDate!
+}
+
+type CommentListWithPages {
+    comments: [Comment!]!
+    pages: Int
+}
+
+type Order {
+    _id: ID!
+    id: Int!
+    orderId: String!
+    status: OrderStatusType!
+    name: String!  
+    phone: String!
+    created: GraphQLDate!
+    pickup: GraphQLDate!
+    subtotal: Float!
+    tax: Float!
+    total: Float!
+    items: String!
+    request: String!
+}
+
+type OrderListWithPages {
+    orders: [Order!]!
+    pages: Int
+}
+
+input CommentInputs {
+    dishId: Int!
+    rating: Int!
+    comment: String!
+    author: String!
+}
+
+input OrderInputs {
+    name: String!  
+    phone: String!
+    pickup: GraphQLDate!
+    subtotal: Float!
+    tax: Float!
+    total: Float!
+    items: String!
+    request: String!
+}
+
+
 ##### Top level declarations
 
 type Query {
@@ -79,11 +159,45 @@ type Query {
         effortMin: Int
         effortMax: Int
     ): [IssueCounts!]!
+
+    ##Awesome Dimsum
+    menuList(search: String): [Dish!]!
+    dish(dishId: Int!): Dish!
+    stockList: [DishStock!]!
+    stock(dishId: Int!): Int!
+    commentList(
+        dishId: Int!
+        page: Int = 1
+    ): CommentListWithPages
+
+    orderList(
+        status: OrderStatusType
+        pickupStart: GraphQLDate
+        pickupEnd: GraphQLDate
+        search: String
+        page: Int = 1
+    ): OrderListWithPages
+    order(id: Int!): Order!
+    orderStatusList(
+        name: String!
+        phone: String!
+    ): [Order!]!
+    orderStatus(
+        name: String!
+        orderId: String!
+    ): Order!
 }
+
 type Mutation {
     setAboutMessage(message: String!): String
     issueAdd(issue: IssueInputs!): Issue!
     issueUpdate(id: Int!, changes: IssueUpdateInputs!): Issue!
     issueDelete(id: Int!): Boolean!
     issueRestore(id: Int!): Boolean!
+
+    ##Awesome Dimsum
+    stockUpdate(dishId: Int!, stock: Int!): DishStock!
+    commentAdd(comment: CommentInputs!): Comment!
+    orderAdd(order: OrderInputs!): Order!
+    orderUpdate(orderId: String!, status: OrderStatusType!): Order!
 }

@@ -1,11 +1,11 @@
 const { UserInputError } = require('apollo-server-express');
-const { getDb, getNextSequence } = require('./db');
+const { getIssueDb, getNextSequence } = require('./db');
 const { mustBeSignedIn } = require('./auth');
 
 const PAGE_SIZE = 10;
 
 async function get(_, { id }) {
-  const db = getDb();
+  const db = getIssueDb();
   const issue = await db.collection('issues').findOne({ id });
   return issue;
 }
@@ -13,7 +13,7 @@ async function get(_, { id }) {
 async function list(_, {
   status, effortMin, effortMax, search, page,
 }) {
-  const db = getDb();
+  const db = getIssueDb();
   const filter = {};
   if (status) filter.status = status;
 
@@ -50,7 +50,7 @@ function validate(issue) {
 }
 
 async function add(_, { issue }) {
-  const db = getDb();
+  const db = getIssueDb();
   validate(issue);
   const newIssue = Object.assign({}, issue);
   newIssue.created = new Date();
@@ -63,7 +63,7 @@ async function add(_, { issue }) {
 }
 
 async function update(_, { id, changes }) {
-  const db = getDb();
+  const db = getIssueDb();
   if (changes.title || changes.status || changes.owner) {
     const issue = await db.collection('issues').findOne({ id });
     Object.assign(issue, changes);
@@ -75,7 +75,7 @@ async function update(_, { id, changes }) {
 }
 
 async function remove(_, { id }) {
-  const db = getDb();
+  const db = getIssueDb();
   const issue = await db.collection('issues').findOne({ id });
   if (!issue) return false;
   issue.deleted = new Date();
@@ -89,7 +89,7 @@ async function remove(_, { id }) {
 }
 
 async function restore(_, { id }) {
-  const db = getDb();
+  const db = getIssueDb();
   const issue = await db.collection('deleted_issues').findOne({ id });
   if (!issue) return false;
   issue.deleted = new Date();
@@ -103,7 +103,7 @@ async function restore(_, { id }) {
 }
 
 async function counts(_, { status, effortMin, effortMax }) {
-  const db = getDb();
+  const db = getIssueDb();
   const filter = {};
 
   if (status) filter.status = status;
