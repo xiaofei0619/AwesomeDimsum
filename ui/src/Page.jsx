@@ -11,6 +11,7 @@ import SignInNavItem from './SignInNavItem.jsx';
 import UserContext from './UserContext.js';
 import graphQLFetch from './graphQLFetch.js';
 import store from './store.js';
+import Footer from './Footer.jsx';
 
 function NavBar({ user, onUserChange }) {
   return (
@@ -51,20 +52,20 @@ function NavBar({ user, onUserChange }) {
   );
 }
 
-function Footer() {
-  return (
-    <small>
-      <hr />
-      <p className="text-center">
-        Full source code availiable at this
-        {' '}
-        <a href="https://github.com/vasansr/pro-mern-stack-2">
-          GitHub repository
-        </a>
-      </p>
-    </small>
-  );
-}
+// function Footer() {
+//   return (
+//     <small>
+//       <hr />
+//       <p className="text-center">
+//         Full source code availiable at this
+//         {' '}
+//         <a href="https://github.com/vasansr/pro-mern-stack-2">
+//           GitHub repository
+//         </a>
+//       </p>
+//     </small>
+//   );
+// }
 
 export default class Page extends React.Component {
   static async fetchData(cookie) {
