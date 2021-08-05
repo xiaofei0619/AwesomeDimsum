@@ -1,8 +1,10 @@
 import React from 'react';
 import {
   Navbar, Nav, NavItem, NavDropdown,
-  MenuItem, Glyphicon, Grid, Col,
+  Dropdown, Container, Col,
 } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { LinkContainer } from 'react-router-bootstrap';
 import IssueAddNavItem from './IssueAddNavItem.jsx';
 import Contents from './Contents.jsx';
@@ -13,7 +15,7 @@ import graphQLFetch from './graphQLFetch.js';
 import store from './store.js';
 import Footer from './Footer.jsx';
 
-function NavBar({ user, onUserChange }) {
+function MyNavBar({ user, onUserChange }) {
   return (
     <Navbar>
       <Navbar.Header>
@@ -40,32 +42,17 @@ function NavBar({ user, onUserChange }) {
         <SignInNavItem user={user} onUserChange={onUserChange} />
         <NavDropdown
           id="user-dropdown"
-          title={<Glyphicon glyph="option-vertical" />}
+          title={<FontAwesomeIcon icon={faCaretDown} size="2x" />}
           noCaret
         >
           <LinkContainer to="/about">
-            <MenuItem>About</MenuItem>
+            <Dropdown.Item>About</Dropdown.Item>
           </LinkContainer>
         </NavDropdown>
       </Nav>
     </Navbar>
   );
 }
-
-// function Footer() {
-//   return (
-//     <small>
-//       <hr />
-//       <p className="text-center">
-//         Full source code availiable at this
-//         {' '}
-//         <a href="https://github.com/vasansr/pro-mern-stack-2">
-//           GitHub repository
-//         </a>
-//       </p>
-//     </small>
-//   );
-// }
 
 export default class Page extends React.Component {
   static async fetchData(cookie) {
@@ -101,12 +88,12 @@ export default class Page extends React.Component {
     if (user == null) return null;
     return (
       <div>
-        <NavBar user={user} onUserChange={this.onUserChange} />
-        <Grid fluid>
+        <MyNavBar user={user} onUserChange={this.onUserChange} />
+        <Container fluid>
           <UserContext.Provider value={user}>
             <Contents />
           </UserContext.Provider>
-        </Grid>
+        </Container>
         <Footer />
       </div>
     );

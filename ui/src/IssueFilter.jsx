@@ -3,8 +3,8 @@ import React from 'react';
 import URLSearchParams from 'url-search-params';
 import { withRouter } from 'react-router-dom';
 import {
-  Button, ButtonToolbar, FormGroup, FormControl, ControlLabel, InputGroup,
-  Row, Col,
+  Button, ButtonToolbar, FormGroup, FormControl, InputGroup,
+  Row, Col, Form,
 } from 'react-bootstrap';
 
 class IssueFilter extends React.Component {
@@ -82,7 +82,7 @@ class IssueFilter extends React.Component {
       <Row>
         <Col xs={6} sm={4} md={3} lg={2}>
           <FormGroup>
-            <ControlLabel>Status:</ControlLabel>
+            <Form.Label>Status:</Form.Label>
             <FormControl
               componentClass="select"
               value={status}
@@ -98,7 +98,7 @@ class IssueFilter extends React.Component {
         </Col>
         <Col xs={6} sm={4} md={3} lg={2}>
           <FormGroup>
-            <ControlLabel>Effort between:</ControlLabel>
+            <Form.Label>Effort between:</Form.Label>
             <InputGroup>
               <FormControl value={effortMin} onChange={this.onChangeEffortMin} />
               <InputGroup.Addon>-</InputGroup.Addon>
@@ -108,7 +108,7 @@ class IssueFilter extends React.Component {
         </Col>
         <Col xs={6} sm={4} md={3} lg={2}>
           <FormGroup>
-            <ControlLabel>&nbsp;</ControlLabel>
+            <Form.Label>&nbsp;</Form.Label>
             <ButtonToolbar>
               <Button bsStyle="primary" type="button" onClick={this.applyFilter}>
                 Apply

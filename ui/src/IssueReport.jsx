@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel, Table } from 'react-bootstrap';
+import { Accordion, Card, Table } from 'react-bootstrap';
 
 import IssueFilter from './IssueFilter.jsx';
 import withToast from './withToast.jsx';
@@ -85,14 +85,18 @@ class IssueReport extends React.Component {
 
     return (
       <>
-        <Panel>
-          <Panel.Heading>
-            <Panel.Title toggle>Filter</Panel.Title>
-          </Panel.Heading>
-          <Panel.Body collapsible>
-            <IssueFilter urlBase="/report" />
-          </Panel.Body>
-        </Panel>
+        <Accordion>
+          <Card>
+            <Accordion.Toggle as={Card.Header}>
+              Filter
+            </Accordion.Toggle>
+            <Accordion.Collapse>
+              <Card.Body>
+                <IssueFilter urlBase="/report" />
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
         <Table bordered condensed hover responsive>
           <thead>
             <tr>

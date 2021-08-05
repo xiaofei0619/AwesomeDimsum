@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
 const browserConfig = {
@@ -32,6 +33,11 @@ const browserConfig = {
             ],
           },
         },
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+        exclude: /\.module\.css$/,
       },
     ],
   },
@@ -75,12 +81,18 @@ const serverConfig = {
           },
         },
       },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        exclude: /\.module\.css$/,
+      },
     ],
   },
   plugins: [
     new webpack.DefinePlugin({
       __isBrowser__: 'false',
     }),
+    new MiniCssExtractPlugin(),
   ],
   devtool: 'source-map',
 };

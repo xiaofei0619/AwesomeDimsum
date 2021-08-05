@@ -2,8 +2,10 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import {
-  Button, Glyphicon, Tooltip, OverlayTrigger, Table,
+  Button, Tooltip, OverlayTrigger, Table,
 } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faWindowClose, faTrash } from '@fortawesome/free-solid-svg-icons';
 import UserContext from './UserContext.js';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -49,19 +51,19 @@ class IssueRowPlain extends React.Component {
           <LinkContainer to={`/edit/${issue.id}`}>
             <OverlayTrigger delayShow={1000} overlay={editTooltip}>
               <Button bsSize="xsmall">
-                <Glyphicon glyph="edit" />
+                <FontAwesomeIcon icon={faEdit} size="2x" />
               </Button>
             </OverlayTrigger>
           </LinkContainer>
           <OverlayTrigger delayShow={1000} overlay={closeTooltip}>
             <Button disabled={disabled} bsSize="xsmall" onClick={onClose}>
-              <Glyphicon glyph="remove" />
+              <FontAwesomeIcon icon={faWindowClose} size="2x" />
             </Button>
           </OverlayTrigger>
           {' '}
           <OverlayTrigger delayShow={1000} overlay={deleteTooltip}>
             <Button disabled={disabled} bsSize="xsmall" onClick={onDelete}>
-              <Glyphicon glyph="trash" />
+              <FontAwesomeIcon icon={faTrash} size="2x" />
             </Button>
           </OverlayTrigger>
         </td>

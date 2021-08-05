@@ -1,10 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import {
-  NavItem, Glyphicon, Modal, Form, FormGroup, FormControl, ControlLabel,
+  NavItem, Modal, Form,
   Button, ButtonToolbar, Tooltip, OverlayTrigger,
 } from 'react-bootstrap';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import graphQLFetch from './graphQLFetch.js';
 import withToast from './withToast.jsx';
 
@@ -62,7 +63,7 @@ class IssueAddNavItem extends React.Component {
             delayShow={1000}
             overlay={<Tooltip id="create-issue">Create Issue</Tooltip>}
           >
-            <Glyphicon glyph="plus" />
+            <FontAwesomeIcon icon={faPlus} size="2x" />
           </OverlayTrigger>
         </NavItem>
         <Modal keyboard show={showing} onHide={this.hideModal}>
@@ -71,14 +72,14 @@ class IssueAddNavItem extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <Form name="issueAdd">
-              <FormGroup>
-                <ControlLabel>Title</ControlLabel>
-                <FormControl name="title" autoFocus />
-              </FormGroup>
-              <FormGroup>
-                <ControlLabel>Owner</ControlLabel>
-                <FormControl name="owner" />
-              </FormGroup>
+              <Form.Group>
+                <Form.Label>Title</Form.Label>
+                <Form.Control name="title" autoFocus />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Owner</Form.Label>
+                <Form.Control name="owner" />
+              </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer>

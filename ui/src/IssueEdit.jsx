@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import {
-  Col, Panel, Form, FormGroup, FormControl, ControlLabel,
+  Col, Card, Form, FormGroup, FormControl,
   ButtonToolbar, Button, Alert,
 } from 'react-bootstrap';
 
@@ -144,14 +144,12 @@ class IssueEdit extends React.Component {
     const user = this.context;
 
     return (
-      <Panel>
-        <Panel.Heading>
-          <Panel.Title>{`Editing issue: ${id}`}</Panel.Title>
-        </Panel.Heading>
-        <Panel.Body>
+      <Card>
+        <Card.Header>{`Editing issue: ${id}`}</Card.Header>
+        <Card.Body>
           <Form horizontal onSubmit={this.handleSubmit}>
             <FormGroup>
-              <Col componentClass={ControlLabel} sm={3}>Created</Col>
+              <Col componentClass={Form.Label} sm={3}>Created</Col>
               <Col sm={9}>
                 <FormControl.Static>
                   {created.toDateString()}
@@ -159,7 +157,7 @@ class IssueEdit extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup>
-              <Col componentClass={ControlLabel} sm={3}>Status</Col>
+              <Col componentClass={Form.Label} sm={3}>Status</Col>
               <Col sm={9}>
                 <FormControl
                   componentClass="select"
@@ -175,7 +173,7 @@ class IssueEdit extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup>
-              <Col componentClass={ControlLabel} sm={3}>Owner</Col>
+              <Col componentClass={Form.Label} sm={3}>Owner</Col>
               <Col sm={9}>
                 <FormControl
                   componentClass={TextInput}
@@ -187,7 +185,7 @@ class IssueEdit extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup>
-              <Col componentClass={ControlLabel} sm={3}>Effort</Col>
+              <Col componentClass={Form.Label} sm={3}>Effort</Col>
               <Col sm={9}>
                 <FormControl
                   componentClass={NumInput}
@@ -202,7 +200,7 @@ class IssueEdit extends React.Component {
               invalidFields.due ? 'error' : null
             }
             >
-              <Col componentClass={ControlLabel} sm={3}>Due</Col>
+              <Col componentClass={Form.Label} sm={3}>Due</Col>
               <Col sm={9}>
                 <FormControl
                   componentClass={DateInput}
@@ -216,7 +214,7 @@ class IssueEdit extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup>
-              <Col componentClass={ControlLabel} sm={3}>Title</Col>
+              <Col componentClass={Form.Label} sm={3}>Title</Col>
               <Col sm={9}>
                 <FormControl
                   componentClass={TextInput}
@@ -229,7 +227,7 @@ class IssueEdit extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup>
-              <Col componentClass={ControlLabel} sm={3}>Description</Col>
+              <Col componentClass={Form.Label} sm={3}>Description</Col>
               <Col sm={9}>
                 <FormControl
                   componentClass={TextInput}
@@ -263,13 +261,13 @@ class IssueEdit extends React.Component {
               <Col smOffset={3} sm={9}>{validationMessage}</Col>
             </FormGroup>
           </Form>
-        </Panel.Body>
-        <Panel.Footer>
+        </Card.Body>
+        <Card.Footer>
           <Link to={`/edit/${id - 1}`}>Prev</Link>
           {' | '}
           <Link to={`/edit/${id + 1}`}>Next</Link>
-        </Panel.Footer>
-      </Panel>
+        </Card.Footer>
+      </Card>
     );
   }
 }

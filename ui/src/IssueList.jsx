@@ -1,6 +1,8 @@
 import React from 'react';
 import URLSearchParams from 'url-search-params';
-import { Panel, Pagination, Button } from 'react-bootstrap';
+import {
+  Accordion, Card, Pagination, Button,
+} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import IssueFilter from './IssueFilter.jsx';
@@ -221,14 +223,18 @@ class IssueList extends React.Component {
 
     return (
       <React.Fragment>
-        <Panel>
-          <Panel.Heading>
-            <Panel.Title toggle>Filter</Panel.Title>
-          </Panel.Heading>
-          <Panel.Body collapsible>
-            <IssueFilter urlBase="/issues" />
-          </Panel.Body>
-        </Panel>
+        <Accordion>
+          <Card>
+            <Accordion.Toggle as={Card.Header}>
+              Filter
+            </Accordion.Toggle>
+            <Accordion.Collapse>
+              <Card.Body>
+                <IssueFilter urlBase="/issues" />
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
         <hr />
         <IssueTable
           issues={issues}
