@@ -86,12 +86,12 @@ class IssueAddNavItem extends React.Component {
             <ButtonToolbar>
               <Button
                 type="button"
-                bsStyle="primary"
+                variant="primary"
                 onClick={this.handleSubmit}
               >
                 Submit
               </Button>
-              <Button bsStyle="link" onClick={this.hideModal}>Cancel</Button>
+              <Button variant="link" onClick={this.hideModal}>Cancel</Button>
             </ButtonToolbar>
           </Modal.Footer>
         </Modal>

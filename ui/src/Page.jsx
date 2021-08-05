@@ -88,12 +88,12 @@ export default class Page extends React.Component {
     if (user == null) return null;
     return (
       <div>
-        <MyNavBar user={user} onUserChange={this.onUserChange} />
-        <Container fluid>
+        {/* <MyNavBar user={user} onUserChange={this.onUserChange} /> */}
+        <div className="container-fluid px-0">
           <UserContext.Provider value={user}>
             <Contents />
           </UserContext.Provider>
-        </Container>
+        </div>
         <Footer />
       </div>
     );

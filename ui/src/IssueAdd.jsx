@@ -39,7 +39,7 @@ export default class IssueAdd extends React.Component {
           <FormControl type="text" name="title" />
         </FormGroup>
         {' '}
-        <Button bsStyle="primary" type="submit">Add</Button>
+        <Button variant="primary" type="submit">Add</Button>
       </Form>
     );
   }

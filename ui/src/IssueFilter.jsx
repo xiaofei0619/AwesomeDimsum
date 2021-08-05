@@ -83,7 +83,7 @@ class IssueFilter extends React.Component {
         <Col xs={6} sm={4} md={3} lg={2}>
           <FormGroup>
             <Form.Label>Status:</Form.Label>
-            <FormControl
+            {/* <FormControl
               componentClass="select"
               value={status}
               onChange={this.onChangeStatus}
@@ -93,16 +93,16 @@ class IssueFilter extends React.Component {
               <option value="Assigned">Assigned</option>
               <option value="Fixed">Fixed</option>
               <option value="Closed">Closed</option>
-            </FormControl>
+            </FormControl> */}
           </FormGroup>
         </Col>
         <Col xs={6} sm={4} md={3} lg={2}>
           <FormGroup>
             <Form.Label>Effort between:</Form.Label>
             <InputGroup>
-              <FormControl value={effortMin} onChange={this.onChangeEffortMin} />
+              {/* <FormControl value={effortMin} onChange={this.onChangeEffortMin} />
               <InputGroup.Addon>-</InputGroup.Addon>
-              <FormControl value={effortMax} onChange={this.onChangeEffortMax} />
+              <FormControl value={effortMax} onChange={this.onChangeEffortMax} /> */}
             </InputGroup>
           </FormGroup>
         </Col>
@@ -110,7 +110,7 @@ class IssueFilter extends React.Component {
           <FormGroup>
             <Form.Label>&nbsp;</Form.Label>
             <ButtonToolbar>
-              <Button bsStyle="primary" type="button" onClick={this.applyFilter}>
+              <Button variant="primary" type="button" onClick={this.applyFilter}>
                 Apply
               </Button>
               <Button

@@ -31,7 +31,6 @@ export default async function render(req, res) {
       <Page />
     </StaticRouter>
   );
-  console.log(req);
   const body = ReactDOMServer.renderToString(element);
 
   if (context.url) {

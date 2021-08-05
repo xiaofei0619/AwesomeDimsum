@@ -131,7 +131,7 @@ class IssueEdit extends React.Component {
     let validationMessage;
     if (Object.keys(invalidFields).length !== 0 && showingValidation) {
       validationMessage = (
-        <Alert bsStyle="danger" onDismiss={this.dismissValidation}>
+        <Alert variant="danger" onDismiss={this.dismissValidation}>
           Please correct invalid fields before submitting.
         </Alert>
       );
@@ -246,13 +246,13 @@ class IssueEdit extends React.Component {
                 <ButtonToolbar>
                   <Button
                     disabled={!user.signedIn}
-                    bsStyle="primary"
+                    variant="primary"
                     type="submit"
                   >
                     Submit
                   </Button>
                   <LinkContainer to="/issues">
-                    <Button bsStyle="link">Back</Button>
+                    <Button variant="link">Back</Button>
                   </LinkContainer>
                 </ButtonToolbar>
               </Col>

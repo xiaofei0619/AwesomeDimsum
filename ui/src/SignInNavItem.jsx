@@ -115,14 +115,14 @@ class SigninNavItem extends React.Component {
             <Button
               block
               disabled={disabled}
-              bsStyle="primary"
+              variant="primary"
               onClick={this.signIn}
             >
               <img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png" alt="Sign In" />
             </Button>
           </Modal.Body>
           <Modal.Footer>
-            <Button bsStyle="link" onClick={this.hideModal}>Cancel</Button>
+            <Button variant="link" onClick={this.hideModal}>Cancel</Button>
           </Modal.Footer>
         </Modal>
       </>

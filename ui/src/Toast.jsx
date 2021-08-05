@@ -24,7 +24,7 @@ export default class Toast extends React.Component {
           position: 'fixed', buttom: 20, left: 20, zIndex: 10,
         }}
         >
-          <Alert bsStyle={bsStyle} onDismiss={onDismiss}>
+          <Alert variant={bsStyle} onDismiss={onDismiss}>
             {children}
           </Alert>
         </div>
