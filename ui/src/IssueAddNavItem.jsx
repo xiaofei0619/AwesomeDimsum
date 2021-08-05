@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import {
-  NavItem, Modal, Form,
+  Modal, Form, Nav,
   Button, ButtonToolbar, Tooltip, OverlayTrigger,
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -57,15 +57,15 @@ class IssueAddNavItem extends React.Component {
     const { user: { signedIn } } = this.props;
     return (
       <React.Fragment>
-        <NavItem disabled={!signedIn} onClick={this.showModal}>
+        <Nav.Item disabled={!signedIn} onClick={this.showModal}>
           <OverlayTrigger
             placement="left"
             delayShow={1000}
             overlay={<Tooltip id="create-issue">Create Issue</Tooltip>}
           >
-            <FontAwesomeIcon icon={faPlus} size="2x" />
+            <FontAwesomeIcon icon={faPlus} size="1x" color="white" />
           </OverlayTrigger>
-        </NavItem>
+        </Nav.Item>
         <Modal keyboard show={showing} onHide={this.hideModal}>
           <Modal.Header closeButton>
             <Modal.Title>Create Issue</Modal.Title>

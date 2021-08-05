@@ -8,14 +8,14 @@ import {
   faGoogle, faFacebook, faLinkedin, faTwitter, faYoutube, faAlipay, faApplePay,
   faCcAmex, faCcDiscover, faCcVisa, faCcMastercard, faCcPaypal,
 } from '@fortawesome/free-brands-svg-icons';
-
+import './Footer.css';
 
 function Footer() {
   return (
     <div className="footer">
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-2 col-sm-2">
+          <div className="footerElement col-4 col-lg-2">
             <h5>LINK</h5>
             <ul className="list-unstyled">
               <li><Link to="/issues">Home</Link></li>
@@ -24,7 +24,7 @@ function Footer() {
               <li><Link to="/about">Contact Us</Link></li>
             </ul>
           </div>
-          <div className="col-3 col-sm-3">
+          <div className="footerElement col-8 col-lg-3">
             <h5>OUR ADDRESS</h5>
             <address>
               <p>
@@ -43,7 +43,7 @@ function Footer() {
               <a href="mailto:awesomedimsum@food.net"> awesomedimsum@food.net</a>
             </address>
           </div>
-          <div className="col-3 col-sm-3">
+          <div className="footerElement col-12 col-lg-3">
             <h5>WORKING HOURS</h5>
             <p>
               Sunday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11:00 AM - 9:00 PM
@@ -62,7 +62,7 @@ function Footer() {
               <br />
             </p>
           </div>
-          <div className="col-4 col-sm-4 align-self-center">
+          <div className="footerElement col-12 col-lg-4 align-self-center">
             <h5>ACCEPT PAYMENT</h5>
             <div className="text-center">
               <FontAwesomeIcon icon={faAlipay} size="2x" style={{ color: '#DAA520' }} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  NavItem, Modal, Button, NavDropdown, Dropdown,
+  NavItem, Modal, Button, NavDropdown,
 } from 'react-bootstrap';
 import withToast from './withToast.jsx';
 
@@ -96,7 +96,7 @@ class SigninNavItem extends React.Component {
     if (user.signedIn) {
       return (
         <NavDropdown title={user.givenName} id="user">
-          <Dropdown.Item onClick={this.signOut}>Sign out</Dropdown.Item>
+          <NavDropdown.Item onClick={this.signOut}>Sign out</NavDropdown.Item>
         </NavDropdown>
       );
     }
@@ -105,7 +105,7 @@ class SigninNavItem extends React.Component {
     return (
       <>
         <NavItem onClick={this.showModal}>
-          Sign in
+          SIGN IN
         </NavItem>
         <Modal keyboard show={showing} onHide={this.hideModal} bsSize="sm">
           <Modal.Header closeButton>

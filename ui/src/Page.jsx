@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Navbar, Nav, NavItem, NavDropdown,
-  Dropdown, Container, Col,
+  Dropdown, Col, Container,
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -17,40 +17,81 @@ import Footer from './Footer.jsx';
 
 function MyNavBar({ user, onUserChange }) {
   return (
-    <Navbar>
-      <Navbar.Header>
-        <Navbar.Brand>Issue Tracker</Navbar.Brand>
-      </Navbar.Header>
-      <Nav>
-        <LinkContainer exact to="/">
-          <NavItem>Home</NavItem>
+    <Navbar expand="lg" bg="dark" variant="dark">
+      <Container>
+        <LinkContainer exact to="/home">
+          <Navbar.Brand>
+            <img
+              alt=""
+              src="/image/logo1.png"
+              width="60"
+              height="60"
+              className="d-inline-block align-top"
+            />
+          </Navbar.Brand>
         </LinkContainer>
-        <LinkContainer to="/issues">
-          <NavItem>Issue List</NavItem>
-        </LinkContainer>
-        <LinkContainer to="/report">
-          <NavItem>Report</NavItem>
-        </LinkContainer>
-      </Nav>
-      <Col sm={5}>
-        <Navbar.Form>
-          <Search />
-        </Navbar.Form>
-      </Col>
-      <Nav pullRight>
-        <IssueAddNavItem user={user} />
-        <SignInNavItem user={user} onUserChange={onUserChange} />
-        <NavDropdown
-          id="user-dropdown"
-          title={<FontAwesomeIcon icon={faCaretDown} size="2x" />}
-          noCaret
-        >
-          <LinkContainer to="/about">
-            <Dropdown.Item>About</Dropdown.Item>
-          </LinkContainer>
-        </NavDropdown>
-      </Nav>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <LinkContainer exact to="/home">
+              <Nav.Link>HOME</Nav.Link>
+            </LinkContainer>
+            <LinkContainer exact to="/issues">
+              <Nav.Link>ISSUES</Nav.Link>
+            </LinkContainer>
+            <LinkContainer exact to="/report">
+              <Nav.Link>REPORT</Nav.Link>
+            </LinkContainer>
+            <LinkContainer exact to="/about">
+              <Nav.Link>ABOUT</Nav.Link>
+            </LinkContainer>
+          </Nav>
+          <Nav>
+            <Nav.Link>
+              <IssueAddNavItem user={user} />
+            </Nav.Link>
+            <Nav.Link>
+              <SignInNavItem user={user} onUserChange={onUserChange} />
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
+
+  // <Navbar>
+  //   <Navbar.Header>
+  //     <Navbar.Brand>Issue Tracker</Navbar.Brand>
+  //   </Navbar.Header>
+  //   <Nav>
+  //     <LinkContainer exact to="/">
+  //       <NavItem>Home</NavItem>
+  //     </LinkContainer>
+  //     <LinkContainer to="/issues">
+  //       <NavItem>Issue List</NavItem>
+  //     </LinkContainer>
+  //     <LinkContainer to="/report">
+  //       <NavItem>Report</NavItem>
+  //     </LinkContainer>
+  //   </Nav>
+  //   <Col sm={5}>
+  //     <Navbar.Form>
+  //       <Search />
+  //     </Navbar.Form>
+  //   </Col>
+  //   <Nav pullRight>
+  //     <IssueAddNavItem user={user} />
+  //     <SignInNavItem user={user} onUserChange={onUserChange} />
+  //     <NavDropdown
+  //       id="user-dropdown"
+  //       title={<FontAwesomeIcon icon={faCaretDown} size="2x" />}
+  //       noCaret
+  //     >
+  //       <LinkContainer to="/about">
+  //         <Dropdown.Item>About</Dropdown.Item>
+  //       </LinkContainer>
+  //     </NavDropdown>
+  //   </Nav>
+  // </Navbar>
   );
 }
 
@@ -88,7 +129,7 @@ export default class Page extends React.Component {
     if (user == null) return null;
     return (
       <div>
-        {/* <MyNavBar user={user} onUserChange={this.onUserChange} /> */}
+        <MyNavBar user={user} onUserChange={this.onUserChange} />
         <div className="container-fluid px-0">
           <UserContext.Provider value={user}>
             <Contents />
