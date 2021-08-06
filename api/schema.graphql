@@ -130,6 +130,7 @@ input CommentInputs {
 }
 
 input OrderInputs {
+    orderId: String!
     name: String!  
     phone: String!
     pickup: GraphQLDate!

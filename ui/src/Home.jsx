@@ -9,6 +9,12 @@ function Home() {
     width: '100%',
     height: '710px',
   };
+  const carouselCaptionStyle = {
+    top: '50%',
+    transform: 'translateY(-50%)',
+    bottom: 'initial',
+    fontSize: '30px',
+  };
 
   return (
     <Carousel fade>
@@ -19,9 +25,10 @@ function Home() {
           alt="FirstSlide"
           style={carouselImgStyle}
         />
-        <Carousel.Caption>
-          <h3>Soft Opening</h3>
-          <p>15% Off For Online Order Over $60 Before Tax!</p>
+        <Carousel.Caption style={carouselCaptionStyle}>
+          <h1>Welcome to AweSome DimSum</h1>
+          <hr />
+          <p>Online Order 15% Off over $60 before Tax!</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item style={carouselStyle}>
@@ -31,8 +38,9 @@ function Home() {
           alt="SecondSlide"
           style={carouselImgStyle}
         />
-        <Carousel.Caption>
-          <h3>Traditional Handmade Dimsum</h3>
+        <Carousel.Caption style={carouselCaptionStyle}>
+          <h1>Traditional Handmade DimSum</h1>
+          <hr />
           <p>We Have the Most Experienced Dimsum Chefs from China</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -43,10 +51,11 @@ function Home() {
           alt="ThirdSlide"
           style={carouselImgStyle}
         />
-        <Carousel.Caption>
-          <h3>Yum Cha 飲 茶</h3>
+        <Carousel.Caption style={carouselCaptionStyle}>
+          <h1>Yum Cha 飲 茶</h1>
+          <hr />
           <p>
-            Yum cha also known as going for dim sum, is the Cantonese tradition of brunch \
+            Yum cha also known as going for dim sum, is the Cantonese tradition of brunch
             involving Chinese tea and dim sum.
           </p>
         </Carousel.Caption>

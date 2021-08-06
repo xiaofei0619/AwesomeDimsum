@@ -1,5 +1,4 @@
 const { UserInputError } = require('apollo-server-express');
-const shortid = require('shortid');
 const { getDb, getNextSequence } = require('./db');
 
 const ORDER_PAGE_SIZE = 10;
@@ -97,7 +96,6 @@ async function addOrder(_, { order }) {
   validateOrder(order);
   const newOrder = Object.assign({}, order);
   newOrder.id = await getNextSequence('orders');
-  newOrder.orderId = shortid.generate();
   newOrder.status = 'New';
   newOrder.created = new Date();
 
