@@ -9,6 +9,7 @@ import store from '../src/store.js';
 /* eslint-disable no-underscore-dangle */
 store.initialData = window.__INITIAL_DATA__;
 store.userData = window.__USER_DATA__;
+store.menuData = window.__MENU_DATA__;
 
 const element = (
   <Router>

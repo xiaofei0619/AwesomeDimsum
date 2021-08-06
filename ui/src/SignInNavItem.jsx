@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  NavItem, Modal, Button, NavDropdown,
+  Nav, Modal, Button, NavDropdown,
 } from 'react-bootstrap';
 import withToast from './withToast.jsx';
 
@@ -104,10 +104,10 @@ class SigninNavItem extends React.Component {
     const { showing, disabled } = this.state;
     return (
       <>
-        <NavItem onClick={this.showModal}>
+        <Nav.Item onClick={this.showModal}>
           SIGN IN
-        </NavItem>
-        <Modal keyboard show={showing} onHide={this.hideModal} bsSize="sm">
+        </Nav.Item>
+        <Modal keyboard show={showing} onHide={this.hideModal} size="sm">
           <Modal.Header closeButton>
             <Modal.Title>Sign in</Modal.Title>
           </Modal.Header>

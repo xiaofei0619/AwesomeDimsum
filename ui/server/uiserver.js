@@ -62,6 +62,7 @@ app.get('/env.js', (req, res) => {
 });
 
 app.get('*', (req, res, next) => {
+  console.log(req.url);
   render(req, res, next);
 });
 

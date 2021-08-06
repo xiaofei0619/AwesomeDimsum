@@ -6,8 +6,11 @@ import Page from '../src/Page.jsx';
 import template from './template.js';
 import store from '../src/store.js';
 import routes from '../src/routes.js';
+import fetchMenu from './fetchMenu.js';
 
 export default async function render(req, res) {
+  const menuData = await fetchMenu();
+
   const activeRoute = routes.find(
     route => matchPath(req.path, route),
   );
@@ -36,6 +39,6 @@ export default async function render(req, res) {
   if (context.url) {
     res.redirect(301, context.url);
   } else {
-    res.send(template(body, initialData, userData));
+    res.send(template(body, initialData, userData, menuData));
   }
 }

@@ -59,20 +59,6 @@ function MyNavBar({ user, onUserChange }) {
     </Navbar>
 
   // <Navbar>
-  //   <Navbar.Header>
-  //     <Navbar.Brand>Issue Tracker</Navbar.Brand>
-  //   </Navbar.Header>
-  //   <Nav>
-  //     <LinkContainer exact to="/">
-  //       <NavItem>Home</NavItem>
-  //     </LinkContainer>
-  //     <LinkContainer to="/issues">
-  //       <NavItem>Issue List</NavItem>
-  //     </LinkContainer>
-  //     <LinkContainer to="/report">
-  //       <NavItem>Report</NavItem>
-  //     </LinkContainer>
-  //   </Nav>
   //   <Col sm={5}>
   //     <Navbar.Form>
   //       <Search />

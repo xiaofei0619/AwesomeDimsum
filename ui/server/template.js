@@ -1,6 +1,6 @@
 import serialize from 'serialize-javascript';
 
-export default function template(body, initialData, userData) {
+export default function template(body, initialData, userData, menuData) {
   return `<!DOCTYPE HTML>
   <html>
 
@@ -24,6 +24,7 @@ export default function template(body, initialData, userData) {
     <script>
       window.__INITIAL_DATA__ = ${serialize(initialData)}
       window.__USER_DATA__ = ${serialize(userData)}
+      window.__MENU_DATA__ = ${serialize(menuData)}
     </script>
 
     <script src="/env.js"></script>
