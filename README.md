@@ -15,30 +15,30 @@ Link to deployed UI Git repository:
 https://github.com/xiaofei0619/AwesomeDimsum-ui
 <br/>
 
-- Write scripts to create Atlas MongoDB collections: dishes, stocks, comments, orders, counters.
+Write scripts to create Atlas MongoDB collections: dishes, stocks, comments, orders, counters.
 <br/>
 ![AtlasMongoDB](/readme_images/AtlasMongoDB.png)
 <br />
 
-- Update GraphQL schema, create back-end APIs and resolvers. Finish testing all queries and mutations in GraphQL playground.
+Update GraphQL schema, create back-end APIs and resolvers. Finish testing all queries and mutations in GraphQL playground.
 <br/>
 ![GraphQLPlaygroundTesting](/readme_images/GraphQLTested.png)
 <br />
 
-- Upgrade Webpack version, Bootstrap version, React-Bootstrap version to latest, and fix issues realted to the version changes.
+Upgrade Webpack version, Bootstrap version, React-Bootstrap version to latest, and fix issues realted to the version changes.
 
-- Build responsive Home page with Home component and Footer component.
+Build responsive Home page with Home component and Footer component.
 <br/>
 ![Home page with large screen](/readme_images/Iteration1_lg.png)
 <br />
 ![Home page with small screen](/readme_images/Iteration1_sm.png)
 <br />
 
-- Fetch Menu data from Atlas during server-side rendering sucessfully.
+Fetch Menu data from Atlas during server-side rendering sucessfully.
 <br />
 ![Fetch Menu](/readme_images/FetchMenu.png)
 <br />
 
-- Deploy the ui and api heroku apps
+Deploy the ui and api heroku apps.
 
-- Other than React-Bootstrap, I will be using the datetime picker from rsuit (https://www.npmjs.com/package/rsuite)
+Other than React-Bootstrap, I will be using the datetime picker from rsuit (https://www.npmjs.com/package/rsuite).
