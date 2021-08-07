@@ -10,6 +10,7 @@ import fetchMenu from './fetchMenu.js';
 
 export default async function render(req, res) {
   const menuData = await fetchMenu();
+  store.menuData = menuData.menuList;
 
   const activeRoute = routes.find(
     route => matchPath(req.path, route),

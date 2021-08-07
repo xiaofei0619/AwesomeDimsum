@@ -51,19 +51,19 @@ class IssueRowPlain extends React.Component {
           <LinkContainer to={`/edit/${issue.id}`}>
             <OverlayTrigger delayShow={1000} overlay={editTooltip}>
               <Button size="xsmall">
-                <FontAwesomeIcon icon={faEdit} size="2x" />
+                <FontAwesomeIcon icon={faEdit} size="1x" />
               </Button>
             </OverlayTrigger>
           </LinkContainer>
           <OverlayTrigger delayShow={1000} overlay={closeTooltip}>
             <Button disabled={disabled} size="xsmall" onClick={onClose}>
-              <FontAwesomeIcon icon={faWindowClose} size="2x" />
+              <FontAwesomeIcon icon={faWindowClose} size="1x" />
             </Button>
           </OverlayTrigger>
           {' '}
           <OverlayTrigger delayShow={1000} overlay={deleteTooltip}>
             <Button disabled={disabled} size="xsmall" onClick={onDelete}>
-              <FontAwesomeIcon icon={faTrash} size="2x" />
+              <FontAwesomeIcon icon={faTrash} size="1x" />
             </Button>
           </OverlayTrigger>
         </td>

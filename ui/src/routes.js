@@ -4,11 +4,12 @@ import IssueEdit from './IssueEdit.jsx';
 import About from './About.jsx';
 import NotFound from './NotFound.jsx';
 import Home from './Home.jsx';
-import Cart from './Cart.jsx';
+import Menu from './Menu.jsx';
+// import Cart from './Cart.jsx';
 
 const routes = [
   { path: '/home', component: Home },
-  // { path: '/cart', component: Cart },
+  { path: '/menu', component: Menu },
   { path: '/issues/:id?', component: IssueList },
   { path: '/edit/:id', component: IssueEdit },
   { path: '/report', component: IssueReport },

@@ -36,8 +36,8 @@ function MyNavBar({ user, onUserChange }) {
             <LinkContainer exact to="/home">
               <Nav.Link>HOME</Nav.Link>
             </LinkContainer>
-            <LinkContainer exact to="/issues">
-              <Nav.Link>ISSUES</Nav.Link>
+            <LinkContainer exact to="/menu">
+              <Nav.Link>ORDER</Nav.Link>
             </LinkContainer>
             <LinkContainer exact to="/report">
               <Nav.Link>REPORT</Nav.Link>
