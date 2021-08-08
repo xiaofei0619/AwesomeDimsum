@@ -8,7 +8,7 @@ async function listDish(_, { search }) {
   const filter = {};
   if (search) filter.$text = { $search: search };
   const cursor = await db.collection('dishes').find(filter)
-    .sort({ id: 1 });
+    .sort({ dishId: 1 });
   const dishes = cursor.toArray();
   return dishes;
 }

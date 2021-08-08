@@ -18,10 +18,15 @@ export default async function render(req, res) {
 
   let initialData;
   if (activeRoute && activeRoute.component.fetchData) {
+    console.log('In render.jsx');
     const match = matchPath(req.path, activeRoute);
     const index = req.url.indexOf('?');
     const search = index !== -1 ? req.url.substr(index) : null;
+    console.log('match: ', match);
+    console.log('index: ', index);
+    console.log('search: ', search);
     initialData = await activeRoute.component.fetchData(match, search, req.headers.cookie);
+    console.log(initialData);
   }
 
   const userData = await Page.fetchData(req.headers.cookie);
