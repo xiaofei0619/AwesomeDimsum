@@ -3,6 +3,7 @@ import { Accordion, Card } from 'react-bootstrap';
 import store from './store.js';
 import Dish from './Dish.jsx';
 import graphQLFetch from './graphQLFetch.js';
+import SearchMenu from './SearchMenu.jsx';
 
 export default class Menu extends React.Component {
   static async fetchData() {
@@ -154,7 +155,19 @@ export default class Menu extends React.Component {
 
     if (stockList === null) {
       return (
-        MenuPage(dishes)
+        <div>
+          <div className="row mt-5 mb-3 justify-content-center">
+            <div className="col-4 col-lg-1">
+              Search Menu
+            </div>
+            <div className="col-6 col-lg-5">
+              <SearchMenu />
+            </div>
+          </div>
+          <div>
+            {MenuPage(dishes)}
+          </div>
+        </div>
       );
     }
 
@@ -166,7 +179,19 @@ export default class Menu extends React.Component {
       });
     }
     return (
-      MenuPage(mergeList)
+      <div>
+        <div className="row mt-5 mb-3 justify-content-center">
+          <div className="col-4 col-lg-1">
+            Search Menu
+          </div>
+          <div className="col-6 col-lg-5">
+            <SearchMenu />
+          </div>
+        </div>
+        <div>
+          {MenuPage(mergeList)}
+        </div>
+      </div>
     );
   }
 }
