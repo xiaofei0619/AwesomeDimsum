@@ -1,8 +1,9 @@
 import React from 'react';
 import URLSearchParams from 'url-search-params';
 import {
-  Card, Pagination,
+  Card, Pagination, Button,
 } from 'react-bootstrap';
+import { InputNumber } from 'rsuite';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import graphQLFetch from './graphQLFetch.js';
@@ -145,8 +146,8 @@ class OrderDish extends React.Component {
 
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-12 col-md-4">
+        <div className="row mt-4">
+          <div className="col-12 col-lg-6">
             <Card>
               <Card.Img width="100%" src={dish.image} alt={dish.name} />
               <Card.Body>
@@ -156,25 +157,41 @@ class OrderDish extends React.Component {
               </Card.Body>
             </Card>
           </div>
-          <div className="col-12 col-md-4">
-            <h3>{dish.name}</h3>
-            <h5>{`$${dish.price}`}</h5>
-            <h5>{`stock: ${stock}`}</h5>
+          <div className="col-12 col-lg-4">
+            <div className="row">
+              <div className="col-11">
+                <h3>{dish.name}</h3>
+                <h5>{`$${dish.price}`}</h5>
+                <h5>{`stock: ${stock}`}</h5>
+              </div>
+              <div className="col-1">
+                <LinkContainer exact to="/menu">
+                  <Button size="md" variant="light">BACK</Button>
+                </LinkContainer>
+              </div>
+            </div>
+            <div className="row">
+              <div>
+                <InputNumber defaultValue={10} max={100} min={10} />
+              </div>
+            </div>
           </div>
         </div>
         <hr />
-        <React.Fragment>
-          <CommentList comments={comments} />
-          <Pagination>
-            <PageLink params={params} page={prevSection}>
-              <Pagination.Item>{'<'}</Pagination.Item>
-            </PageLink>
-            {items}
-            <PageLink params={params} page={nextSection}>
-              <Pagination.Item>{'>'}</Pagination.Item>
-            </PageLink>
-          </Pagination>
-        </React.Fragment>
+        <div className="col-12 col-lg-6">
+          <React.Fragment>
+            <CommentList comments={comments} />
+            <Pagination>
+              <PageLink params={params} page={prevSection}>
+                <Pagination.Item>{'<'}</Pagination.Item>
+              </PageLink>
+              {items}
+              <PageLink params={params} page={nextSection}>
+                <Pagination.Item>{'>'}</Pagination.Item>
+              </PageLink>
+            </Pagination>
+          </React.Fragment>
+        </div>
       </div>
     );
   }
