@@ -5,11 +5,12 @@ import About from './About.jsx';
 import NotFound from './NotFound.jsx';
 import Home from './Home.jsx';
 import Menu from './Menu.jsx';
-// import Cart from './Cart.jsx';
+import OrderDish from './OrderDish.jsx';
 
 const routes = [
   { path: '/home', component: Home },
   { path: '/menu', component: Menu },
+  { path: '/order/:dishId', component: OrderDish },
   { path: '/issues/:id?', component: IssueList },
   { path: '/edit/:id', component: IssueEdit },
   { path: '/report', component: IssueReport },

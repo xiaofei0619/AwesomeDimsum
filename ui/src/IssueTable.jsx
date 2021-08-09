@@ -91,7 +91,7 @@ export default function IssueTable({ issues, closeIssue, deleteIssue }) {
     />
   ));
   return (
-    <Table bordered condensed hover responsive>
+    <Table bordered hover responsive size="sm">
       <thead>
         <tr>
           <th>ID</th>
