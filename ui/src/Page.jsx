@@ -15,74 +15,60 @@ import graphQLFetch from './graphQLFetch.js';
 import store from './store.js';
 import Footer from './Footer.jsx';
 
-function MyNavBar({ user, onUserChange }) {
-  return (
-    <Navbar expand="lg" bg="dark" variant="dark">
-      <Container>
-        <LinkContainer exact to="/home">
-          <Navbar.Brand>
-            <img
-              alt=""
-              src="/image/logo1.png"
-              width="60"
-              height="60"
-              className="d-inline-block align-top"
-            />
-          </Navbar.Brand>
-        </LinkContainer>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <LinkContainer exact to="/home">
-              <Nav.Link>HOME</Nav.Link>
-            </LinkContainer>
-            <LinkContainer exact to="/menu">
-              <Nav.Link>ORDER</Nav.Link>
-            </LinkContainer>
-            <LinkContainer exact to="/report">
-              <Nav.Link>REPORT</Nav.Link>
-            </LinkContainer>
-            <LinkContainer exact to="/issues">
-              <Nav.Link>ISSUES</Nav.Link>
-            </LinkContainer>
-            <LinkContainer exact to="/about">
-              <Nav.Link>ABOUT</Nav.Link>
-            </LinkContainer>
-          </Nav>
-          <Nav>
-            <Nav.Link>
-              <IssueAddNavItem user={user} />
-            </Nav.Link>
-            <Nav.Link>
-              <SignInNavItem user={user} onUserChange={onUserChange} />
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+// eslint-disable-next-line react/prefer-stateless-function
+class MyNavBar extends React.Component {
+  render() {
+    const { onUserChange } = this.props;
+    const user = this.context;
 
-  // <Navbar>
-  //   <Col sm={5}>
-  //     <Navbar.Form>
-  //       <Search />
-  //     </Navbar.Form>
-  //   </Col>
-  //   <Nav pullRight>
-  //     <IssueAddNavItem user={user} />
-  //     <SignInNavItem user={user} onUserChange={onUserChange} />
-  //     <NavDropdown
-  //       id="user-dropdown"
-  //       title={<FontAwesomeIcon icon={faCaretDown} size="2x" />}
-  //       noCaret
-  //     >
-  //       <LinkContainer to="/about">
-  //         <Dropdown.Item>About</Dropdown.Item>
-  //       </LinkContainer>
-  //     </NavDropdown>
-  //   </Nav>
-  // </Navbar>
-  );
+    return (
+      <Navbar expand="lg" bg="dark" variant="dark">
+        <Container>
+          <LinkContainer exact to="/home">
+            <Navbar.Brand>
+              <img
+                alt=""
+                src="/image/logo1.png"
+                width="60"
+                height="60"
+                className="d-inline-block align-top"
+              />
+            </Navbar.Brand>
+          </LinkContainer>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <LinkContainer exact to="/home">
+                <Nav.Link>HOME</Nav.Link>
+              </LinkContainer>
+              <LinkContainer exact to="/menu">
+                <Nav.Link>ORDER</Nav.Link>
+              </LinkContainer>
+              <LinkContainer exact to="/report">
+                <Nav.Link>REPORT</Nav.Link>
+              </LinkContainer>
+              <LinkContainer exact to="/issues">
+                <Nav.Link>ISSUES</Nav.Link>
+              </LinkContainer>
+              <LinkContainer exact to="/about">
+                <Nav.Link>ABOUT</Nav.Link>
+              </LinkContainer>
+            </Nav>
+            <Nav>
+              <Nav.Link>
+                <IssueAddNavItem user={user} />
+              </Nav.Link>
+              <Nav.Link>
+                <SignInNavItem user={user} onUserChange={onUserChange} />
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    );
+  }
 }
+MyNavBar.contextType = UserContext;
 
 export default class Page extends React.Component {
   static async fetchData(cookie) {
@@ -118,7 +104,9 @@ export default class Page extends React.Component {
     if (user == null) return null;
     return (
       <div>
-        <MyNavBar user={user} onUserChange={this.onUserChange} />
+        <UserContext.Provider value={user}>
+          <MyNavBar onUserChange={this.onUserChange} />
+        </UserContext.Provider>
         <div className="container-fluid px-0">
           <UserContext.Provider value={user}>
             <Contents />
