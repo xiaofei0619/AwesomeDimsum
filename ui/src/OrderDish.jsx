@@ -79,7 +79,9 @@ class OrderDish extends React.Component {
       stock,
       comments,
       pages,
+      selectAmount: 1,
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
@@ -114,8 +116,15 @@ class OrderDish extends React.Component {
         stock: data.stock,
         comments: data.commentList.comments,
         pages: data.commentList.pages,
+        selectAmount: 1,
       });
     }
+  }
+
+  handleInputChange(selectAmount) {
+    this.setState({
+      selectAmount,
+    });
   }
 
   render() {
@@ -144,6 +153,8 @@ class OrderDish extends React.Component {
       ));
     }
 
+    const { selectAmount } = this.state;
+
     return (
       <div className="container">
         <div className="row mt-4">
@@ -162,7 +173,6 @@ class OrderDish extends React.Component {
               <div className="col-11">
                 <h3>{dish.name}</h3>
                 <h5>{`$${dish.price}`}</h5>
-                <h5>{`stock: ${stock}`}</h5>
               </div>
               <div className="col-1">
                 <LinkContainer exact to="/menu">
@@ -170,9 +180,25 @@ class OrderDish extends React.Component {
                 </LinkContainer>
               </div>
             </div>
+            <hr />
             <div className="row">
-              <div>
-                <InputNumber defaultValue={10} max={100} min={10} />
+              <div className="col-7">
+                <InputNumber
+                  value={selectAmount}
+                  min={1}
+                  max={stock}
+                  onChange={this.handleInputChange}
+                  step={1}
+                />
+              </div>
+              <div className="col-5">
+                <Button
+                  size="md"
+                  variant="light"
+                  disabled={stock <= 0}
+                >
+                  ADD TO CART
+                </Button>
               </div>
             </div>
           </div>
