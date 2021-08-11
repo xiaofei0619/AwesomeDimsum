@@ -48,12 +48,6 @@ export default class AddComment extends React.Component {
     }));
   }
 
-  // handleSubmit(event) {
-  //   console.log(`Current State is: ${JSON.stringify(this.state)}`);
-  //   alert(`Current State is: ${JSON.stringify(this.state)}`);
-  //   event.preventDefault();
-  // }
-
   validate(comment, author) {
     const errors = {
       comment: '',
@@ -86,8 +80,6 @@ export default class AddComment extends React.Component {
   render() {
     const { rating, comment, author } = this.state;
     const errors = this.validate(comment, author);
-    console.log('Logging the errors......');
-    console.log(errors);
 
     const { handleAddComment } = this.props;
     const newComment = {};
@@ -96,11 +88,9 @@ export default class AddComment extends React.Component {
     newComment.comment = comment;
     newComment.author = author;
 
-    function addComment(e) {
+    const addComment = e => {
       e.preventDefault();
       handleAddComment(newComment);
-      console.log('I am in the addCOmment function now\\\\\\\\\\\\');
-      console.log(this.state);
       this.setState({
         rating: 1,
         comment: '',
@@ -110,9 +100,7 @@ export default class AddComment extends React.Component {
           author: false,
         },
       });
-      console.log('After resetting the states Checking the state of form!!');
-      console.log(this.state);
-    }
+    };
 
     return (
       <div className="container">
