@@ -11,6 +11,7 @@ import withToast from './withToast.jsx';
 import store from './store.js';
 import CommentList from './CommentList.jsx';
 import UserContext from './UserContext.js';
+import AddComment from './AddComment.jsx';
 
 const SECTION_SIZE = 5;
 
@@ -246,9 +247,9 @@ class OrderDish extends React.Component {
             </Pagination>
           </React.Fragment>
         </div>
-        {/* <div className="col-12 col-lg-8">
-
-        </div> */}
+        <div className="col-12 col-lg-8 mt-5">
+          <AddComment />
+        </div>
       </div>
     );
   }
