@@ -18,8 +18,9 @@ export default class AddComment extends React.Component {
     };
     this.handleBlur = this.handleBlur.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRatingChange = this.handleRatingChange.bind(this);
+    // this.addComment = this.addComment.bind(this);
   }
 
   handleInputChange(event) {
@@ -47,11 +48,11 @@ export default class AddComment extends React.Component {
     }));
   }
 
-  handleSubmit(event) {
-    console.log(`Current State is: ${JSON.stringify(this.state)}`);
-    alert(`Current State is: ${JSON.stringify(this.state)}`);
-    event.preventDefault();
-  }
+  // handleSubmit(event) {
+  //   console.log(`Current State is: ${JSON.stringify(this.state)}`);
+  //   alert(`Current State is: ${JSON.stringify(this.state)}`);
+  //   event.preventDefault();
+  // }
 
   validate(comment, author) {
     const errors = {
@@ -59,12 +60,20 @@ export default class AddComment extends React.Component {
       author: '',
     };
 
+    if (!this.state.touched.author) {
+      errors.author = 'Nickname can not be blank';
+    }
+
+    if (!this.state.touched.comment) {
+      errors.comment = 'Nickname can not be blank';
+    }
+
     // eslint-disable-next-line react/destructuring-assignment
     if (this.state.touched.author && author.length < 3) {
-      errors.author = 'Name should be at least 3 characters';
+      errors.author = 'Nicname should be at least 3 characters';
     // eslint-disable-next-line react/destructuring-assignment
     } else if (this.state.touched.author && author.length > 20) {
-      errors.author = 'Name should be no longer than 20 characters';
+      errors.author = 'Nicname should be no longer than 20 characters';
     }
 
     // eslint-disable-next-line react/destructuring-assignment
@@ -77,6 +86,33 @@ export default class AddComment extends React.Component {
   render() {
     const { rating, comment, author } = this.state;
     const errors = this.validate(comment, author);
+    console.log('Logging the errors......');
+    console.log(errors);
+
+    const { handleAddComment } = this.props;
+    const newComment = {};
+    newComment.dishId = this.props.distId;
+    newComment.rating = rating;
+    newComment.comment = comment;
+    newComment.author = author;
+
+    function addComment(e) {
+      e.preventDefault();
+      handleAddComment(newComment);
+      console.log('I am in the addCOmment function now\\\\\\\\\\\\');
+      console.log(this.state);
+      this.setState({
+        rating: 1,
+        comment: '',
+        author: '',
+        touched: {
+          comment: false,
+          author: false,
+        },
+      });
+      console.log('After resetting the states Checking the state of form!!');
+      console.log(this.state);
+    }
 
     return (
       <div className="container">
@@ -85,7 +121,7 @@ export default class AddComment extends React.Component {
             <h4>Add Your Review</h4>
           </div>
           <div className="col-12 col-md-9">
-            <Form onSubmit={this.handleSubmit}>
+            <Form>
               <Form.Group as={Row}>
                 <Form.Label htmlFor="rating" column md={2}>Rating</Form.Label>
                 <Col md={10}>
@@ -130,7 +166,12 @@ export default class AddComment extends React.Component {
                 </Col>
               </Form.Group>
               <Col md={{ size: 10, offset: 2 }}>
-                <Button type="submit" variant="light">
+                <Button
+                  type="submit"
+                  variant="info"
+                  disabled={errors.author!=='' || errors.comment!==''}
+                  onClick={addComment}
+                >
                   ADD REVIEW
                 </Button>
               </Col>

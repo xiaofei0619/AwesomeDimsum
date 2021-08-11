@@ -84,6 +84,7 @@ class OrderDish extends React.Component {
       selectAmount: 1,
     };
     this.handleInputAmountChange = this.handleInputAmountChange.bind(this);
+    this.handleAddComment = this.handleAddComment.bind(this);
   }
 
   componentDidMount() {
@@ -118,6 +119,26 @@ class OrderDish extends React.Component {
         pages: data.commentList.pages,
         selectAmount: 1,
       });
+    }
+  }
+
+  async handleAddComment(newComment) {
+    const query = `mutation addNewComment(
+      $comment: CommentInputs!
+    ){
+      commentAdd (
+        comment: $comment
+      ) {
+        id dishId rating comment author date
+      }
+    }`;
+    const { showError } = this.props;
+    const data = await graphQLFetch(query, { comment: newComment }, showError);
+    if (data) {
+      this.loadData();
+    } else {
+      console.log('Errors during submitting comment');
+      this.loadData();
     }
   }
 
@@ -248,7 +269,10 @@ class OrderDish extends React.Component {
           </React.Fragment>
         </div>
         <div className="col-12 col-lg-8 mt-5">
-          <AddComment />
+          <AddComment
+            handleAddComment={this.handleAddComment}
+            distId={dish.dishId}
+          />
         </div>
       </div>
     );
