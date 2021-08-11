@@ -10,6 +10,7 @@ import graphQLFetch from './graphQLFetch.js';
 import withToast from './withToast.jsx';
 import store from './store.js';
 import CommentList from './CommentList.jsx';
+import UserContext from './UserContext.js';
 
 const SECTION_SIZE = 5;
 
@@ -81,7 +82,7 @@ class OrderDish extends React.Component {
       pages,
       selectAmount: 1,
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputAmountChange = this.handleInputAmountChange.bind(this);
   }
 
   componentDidMount() {
@@ -90,8 +91,6 @@ class OrderDish extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('Component Did Updated entered...');
-    console.log(this.props);
     const {
       location: { search: prevSearch },
       match: { params: { dishId: prevDishId } },
@@ -121,9 +120,10 @@ class OrderDish extends React.Component {
     }
   }
 
-  handleInputChange(selectAmount) {
+  handleInputAmountChange(selectAmount) {
+    const amountInt = parseInt(selectAmount, 10);
     this.setState({
-      selectAmount,
+      selectAmount: amountInt,
     });
   }
 
@@ -133,6 +133,15 @@ class OrderDish extends React.Component {
 
     const { stock, pages } = this.state;
     const { location: { search } } = this.props;
+
+    const { dish: { dishId } } = this.state;
+    const { match: { params: { dishId: propsDishId } } } = this.props;
+    if (dishId == null) {
+      if (propsDishId != null) {
+        return <h3>{`Dish with dishID ${propsDishId} not found.`}</h3>;
+      }
+      return null;
+    }
 
     const params = new URLSearchParams(search);
     let page = parseInt(params.get('page'), 10);
@@ -154,6 +163,20 @@ class OrderDish extends React.Component {
     }
 
     const { selectAmount } = this.state;
+    const user = this.context;
+    const { cartItems } = user;
+
+    const copiedCartItems = JSON.parse(JSON.stringify(cartItems));
+    if (Object.keys(copiedCartItems).indexOf(dish.dishId.toString()) !== -1) {
+      copiedCartItems[dish.dishId] += selectAmount;
+    } else {
+      copiedCartItems[dish.dishId] = selectAmount;
+    }
+
+    function handleAddToCart(e) {
+      e.preventDefault();
+      user.updateCartItems(copiedCartItems);
+    }
 
     return (
       <div className="container">
@@ -187,7 +210,7 @@ class OrderDish extends React.Component {
                   value={selectAmount}
                   min={1}
                   max={stock}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleInputAmountChange}
                   step={1}
                 />
               </div>
@@ -196,6 +219,7 @@ class OrderDish extends React.Component {
                   size="md"
                   variant="light"
                   disabled={stock <= 0}
+                  onClick={handleAddToCart}
                 >
                   ADD TO CART
                 </Button>
@@ -223,6 +247,7 @@ class OrderDish extends React.Component {
   }
 }
 
+OrderDish.contextType = UserContext;
 const OrderDishWithToast = withToast(OrderDish);
 OrderDishWithToast.fetchData = OrderDish.fetchData;
 
