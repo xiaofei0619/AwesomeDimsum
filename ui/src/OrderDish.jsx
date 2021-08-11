@@ -3,7 +3,7 @@ import URLSearchParams from 'url-search-params';
 import {
   Card, Pagination, Button,
 } from 'react-bootstrap';
-import { InputNumber } from 'rsuite';
+import { InputNumber, Alert } from 'rsuite';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import graphQLFetch from './graphQLFetch.js';
@@ -73,8 +73,8 @@ class OrderDish extends React.Component {
     const stock = store.initialData ? store.initialData.stock : 0;
     const comments = store.initialData ? store.initialData.commentList.comments : null;
     const pages = store.initialData ? store.initialData.commentList.pages : 0;
-
     delete store.initialData;
+
     this.state = {
       dish,
       stock,
@@ -173,9 +173,12 @@ class OrderDish extends React.Component {
       copiedCartItems[dish.dishId] = selectAmount;
     }
 
+    let alertElement = null;
+
     function handleAddToCart(e) {
       e.preventDefault();
       user.updateCartItems(copiedCartItems);
+      alertElement = Alert.success(`Successfully add ${selectAmount} of ${dish.name} to your cart!`, 4000);
     }
 
     return (
@@ -185,7 +188,7 @@ class OrderDish extends React.Component {
             <Card>
               <Card.Img width="100%" src={dish.image} alt={dish.name} />
               <Card.Body>
-                <Card.Text>
+                <Card.Text style={{ fontSize: '18px' }}>
                   {dish.description}
                 </Card.Text>
               </Card.Body>
@@ -224,6 +227,7 @@ class OrderDish extends React.Component {
                   ADD TO CART
                 </Button>
               </div>
+              {alertElement}
             </div>
           </div>
         </div>
@@ -242,6 +246,9 @@ class OrderDish extends React.Component {
             </Pagination>
           </React.Fragment>
         </div>
+        {/* <div className="col-12 col-lg-8">
+
+        </div> */}
       </div>
     );
   }
