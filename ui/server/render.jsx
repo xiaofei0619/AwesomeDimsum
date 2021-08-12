@@ -18,7 +18,7 @@ export default async function render(req, res) {
 
   let initialData;
   if (activeRoute && activeRoute.component.fetchData) {
-    console.log('In render.jsx');
+    console.log('In render.jsx logging initial Data');
     const match = matchPath(req.path, activeRoute);
     const index = req.url.indexOf('?');
     const search = index !== -1 ? req.url.substr(index) : null;

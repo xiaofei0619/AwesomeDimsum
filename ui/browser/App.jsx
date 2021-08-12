@@ -10,7 +10,7 @@ import store from '../src/store.js';
 store.initialData = window.__INITIAL_DATA__;
 store.userData = window.__USER_DATA__;
 store.menuData = window.__MENU_DATA__.menuList;
-console.log(store.menuData);
+console.log(store.initialData);
 
 const element = (
   <Router>
