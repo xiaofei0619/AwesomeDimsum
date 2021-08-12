@@ -28,13 +28,29 @@ class Cart extends React.Component {
     this.state = {
       stockList,
     };
-    // this.handleInputChange = this.handleInputChange.bind(this);
+    this.loadData = this.loadData.bind(this);
   }
+
+  // async componentDidMount() {
+  //   const { stockList } = this.state;
+  //   if (stockList == null) {
+  //     const data = await Cart.fetchData();
+  //     this.setState({
+  //       stockList: data.stockList,
+  //     });
+  //   }
+  // }
 
   async componentDidMount() {
     const { stockList } = this.state;
     if (stockList == null) {
-      const data = await Cart.fetchData();
+      this.loadData();
+    }
+  }
+
+  async loadData() {
+    const data = await Cart.fetchData();
+    if (data) {
       this.setState({
         stockList: data.stockList,
       });
@@ -82,6 +98,11 @@ class Cart extends React.Component {
     const cartDishes = mergeList.filter(
       dish => Object.keys(cartItems).indexOf(dish.dishId.toString()) !== -1,
     );
+
+    console.log('???Stock List???????');
+    console.log(stockList);
+    console.log(mergeList);
+    console.log(cartDishes);
 
     const cartRows = cartDishes.map(dish => (
       <CartRow
@@ -133,6 +154,7 @@ class Cart extends React.Component {
                 {cartRows}
               </tbody>
             </Table>
+
           </Panel>
           {/* <Panel>
             <Form>
@@ -183,6 +205,26 @@ class Cart extends React.Component {
               <div className="col-2 col-md-2">
                 <h6>{`$${total.toFixed(2)}`}</h6>
               </div>
+            </div>
+            <div className="d-flex justify-content-end">
+              <div>
+                <Button
+                  size="sm"
+                  variant="dark"
+                  onClick={this.loadData}
+                >
+                  Refresh Cart
+                </Button>
+              </div>
+              <div style={{ marginLeft: '5px' }}>
+                <Button
+                  size="sm"
+                  variant="dark"
+                >
+                  Fill Pickup Info
+                </Button>
+              </div>
+              <div />
             </div>
           </Panel>
         </PanelGroup>

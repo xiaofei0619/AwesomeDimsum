@@ -1,26 +1,19 @@
 import React from 'react';
 import { InputNumber, Alert } from 'rsuite';
 import { Button } from 'react-bootstrap';
-
+import { LinkContainer } from 'react-router-bootstrap';
 import UserContext from './UserContext.js';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class CartRow extends React.Component {
-  constructor(props) {
-    super(props);
-    const { dish } = this.props;
-    this.state = {
-      dish,
-    };
-  }
-
   render() {
-    const { dish } = this.state;
+    const { dish } = this.props;
+    console.log('Current dish state is -----');
+    console.log(dish);
 
     const user = this.context;
     const { cartItems } = user;
     const selectAmount = cartItems[dish.dishId.toString()];
-    console.log('Current selected amount is -----');
-    console.log(selectAmount);
 
     if (dish.stock === 0) {
       const copiedCartItems = JSON.parse(JSON.stringify(cartItems));
@@ -67,7 +60,13 @@ class CartRow extends React.Component {
 
     return (
       <tr>
-        <td>{dish.name}</td>
+        <td>
+          <LinkContainer to={`/order/${dish.dishId}`}>
+            <Button variant="link">
+              {dish.name}
+            </Button>
+          </LinkContainer>
+        </td>
         <td>{`$${dish.price}`}</td>
         <td>{`$${dishTotal}`}</td>
         <td>

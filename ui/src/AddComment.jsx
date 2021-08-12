@@ -150,7 +150,7 @@ export default class AddComment extends React.Component {
                   <Form.Control.Feedback type="invalid">{errors.author}</Form.Control.Feedback>
                 </Col>
               </Form.Group>
-              <Form.Group as={Row}>
+              <Form.Group as={Row} style={{ marginBottom: '7px' }}>
                 <Form.Label htmlFor="comment" column md={2}>Your Review</Form.Label>
                 <Col md={10}>
                   <Form.Control
@@ -169,7 +169,7 @@ export default class AddComment extends React.Component {
               <Col md={{ size: 10, offset: 2 }}>
                 <Button
                   type="submit"
-                  variant="info"
+                  variant="light"
                   disabled={errors.author !== '' || errors.comment !== ''}
                   onClick={addComment}
                 >
