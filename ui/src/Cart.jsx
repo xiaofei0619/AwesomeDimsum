@@ -6,6 +6,8 @@ export default class Cart extends React.Component {
   }
 
   render() {
-    <h3>Your Cart Is Empty</h3>
+    return (
+      <h3>Your Cart Is Empty</h3>
+    );
   }
 }

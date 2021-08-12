@@ -268,7 +268,7 @@ class OrderDish extends React.Component {
             </Pagination>
           </React.Fragment>
         </div>
-        <div className="col-12 col-lg-8 mt-5">
+        <div className="col-12 col-lg-8 mt-5 mb-5">
           <AddComment
             handleAddComment={this.handleAddComment}
             distId={dish.dishId}

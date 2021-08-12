@@ -33,17 +33,27 @@ export default class AddComment extends React.Component {
   }
 
   handleRatingChange(selectRate) {
-    // const amountInt = parseInt(selectAmount, 10);
     this.setState({
       rating: selectRate,
     });
   }
 
-  handleBlur = (field) => (evt) => {
+  // handleBlur = (field) => (evt) => {
+  //   this.setState(state => ({
+  //     touched: {
+  //       ...state.touched,
+  //       [field]: true,
+  //     },
+  //   }));
+  // }
+
+  handleBlur(evt) {
+    const { target } = evt;
+    const { name } = target;
     this.setState(state => ({
       touched: {
         ...state.touched,
-        [field]: true,
+        [name]: true,
       },
     }));
   }
@@ -54,10 +64,12 @@ export default class AddComment extends React.Component {
       author: '',
     };
 
+    // eslint-disable-next-line react/destructuring-assignment
     if (!this.state.touched.author) {
       errors.author = 'Nickname can not be blank';
     }
 
+    // eslint-disable-next-line react/destructuring-assignment
     if (!this.state.touched.comment) {
       errors.comment = 'Nickname can not be blank';
     }
@@ -83,12 +95,13 @@ export default class AddComment extends React.Component {
 
     const { handleAddComment } = this.props;
     const newComment = {};
+    // eslint-disable-next-line react/destructuring-assignment
     newComment.dishId = this.props.distId;
     newComment.rating = rating;
     newComment.comment = comment;
     newComment.author = author;
 
-    const addComment = e => {
+    const addComment = (e) => {
       e.preventDefault();
       handleAddComment(newComment);
       this.setState({
@@ -131,7 +144,7 @@ export default class AddComment extends React.Component {
                     value={author}
                     isValid={errors.author === ''}
                     isInvalid={errors.author !== ''}
-                    onBlur={this.handleBlur('author')}
+                    onBlur={this.handleBlur}
                     onChange={this.handleInputChange}
                   />
                   <Form.Control.Feedback type="invalid">{errors.author}</Form.Control.Feedback>
@@ -148,7 +161,7 @@ export default class AddComment extends React.Component {
                     value={comment}
                     isValid={errors.comment === ''}
                     isInvalid={errors.comment !== ''}
-                    onBlur={this.handleBlur('comment')}
+                    onBlur={this.handleBlur}
                     onChange={this.handleInputChange}
                   />
                 </Col>
@@ -157,7 +170,7 @@ export default class AddComment extends React.Component {
                 <Button
                   type="submit"
                   variant="info"
-                  disabled={errors.author!=='' || errors.comment!==''}
+                  disabled={errors.author !== '' || errors.comment !== ''}
                   onClick={addComment}
                 >
                   ADD REVIEW

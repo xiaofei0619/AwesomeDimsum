@@ -2,8 +2,6 @@ import React from 'react';
 import {
   Navbar, Nav, Container,
 } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { LinkContainer } from 'react-router-bootstrap';
 import IssueAddNavItem from './IssueAddNavItem.jsx';
 import Contents from './Contents.jsx';
@@ -12,6 +10,7 @@ import UserContext from './UserContext.js';
 import graphQLFetch from './graphQLFetch.js';
 import store from './store.js';
 import Footer from './Footer.jsx';
+import CartNavItem from './CartNavItem.jsx';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class MyNavBar extends React.Component {
@@ -55,6 +54,9 @@ class MyNavBar extends React.Component {
             <Nav>
               <Nav.Link>
                 <IssueAddNavItem user={user} />
+              </Nav.Link>
+              <Nav.Link>
+                <CartNavItem />
               </Nav.Link>
               <Nav.Link>
                 <SignInNavItem user={user} onUserChange={onUserChange} />
