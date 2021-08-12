@@ -17,11 +17,11 @@ https://github.com/xiaofei0619/AwesomeDimsum-ui
 ## Final Project Iteration 2 Progress
 For this iteration, I mainly worked on the UI for customers to 1. browse the menu; 2. browse the previous comments for specific dish item; 3. add new review to the comments; 4. add items to shopping cart; 5. view/update order summary in the shopping cart. Following are the screenshots and detailed explainations.
 
-This is the Menu page which shows various categories of dishes. Dishes that are out of stock should show a label "Sold Out". It contains a search bar, which filters the dishes based on dish name or dish descriptio. Menu page is also responsive, here are the screenshots when the window is large, when the window is small, when searching for dish.
+This is the Menu page which shows various categories of dishes. Dishes that are out of stock should show a label "Sold Out". It contains a search bar, which filters the dishes based on dish name or dish description. Menu page is also responsive, here are the screenshots when the window is large, when the window is small, when searching for dish.
 <br/>
 ![Menu_Full](/readme_images/menu_full.png)
 <br />
-![Menu_Small](/readme_images/menu_small.png)
+![Menu_Small](/readme_images/menu_sm.png)
 <br />
 ![Menu_Search](/readme_images/menu_search.png)
 <br />
