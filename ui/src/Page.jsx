@@ -91,13 +91,37 @@ export default class Page extends React.Component {
           cartItems: items,
         },
       }));
+      // if (localStorage) {
+      //   console.log('Updating cartItems to localStorage...');
+      //   localStorage.setItem('cartItems', JSON.stringify(items));
+      // } else {
+      //   console.log('Updating cartItems to Context only during server-side rendering.');
+      // }
+      try {
+        console.log('Updating localStorage....');
+        localStorage.setItem('cartItems', JSON.stringify(items));
+      } catch (err) {
+        console.log(err);
+        console.log("LocalStorage doesn't exist, can not update the local storage");
+      }
     };
+
+    let cartItems = {};
+    try {
+      console.log('Reading localStorage....');
+      if (localStorage.getItem('cartItems') !== null) {
+        cartItems = JSON.parse(localStorage.getItem('cartItems'));
+      }
+    } catch (err) {
+      console.log(err);
+      console.log("LocalStorage doesn't exist, you probably run with server-side rendering.");
+    }
 
     this.state = {
       user: {
         signedIn: userInfo.signedIn,
         givenName: userInfo.givenName,
-        cartItems: {},
+        cartItems,
         updateCartItems,
       },
     };
