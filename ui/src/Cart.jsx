@@ -3,15 +3,16 @@ import {
   Button, Table,
 } from 'react-bootstrap';
 import {
-  PanelGroup, Panel,
+  PanelGroup, Panel, Alert,
 } from 'rsuite';
 import { LinkContainer } from 'react-router-bootstrap';
+import { withRouter } from 'react-router-dom';
 import graphQLFetch from './graphQLFetch.js';
 import store from './store.js';
 import UserContext from './UserContext.js';
 import CartRow from './CartRow.jsx';
 
-class Cart extends React.Component {
+class CartPlain extends React.Component {
   static async fetchData() {
     const data = await graphQLFetch(`query {
       stockList {
@@ -49,7 +50,7 @@ class Cart extends React.Component {
   }
 
   async loadData() {
-    const data = await Cart.fetchData();
+    const data = await CartPlain.fetchData();
     if (data) {
       this.setState({
         stockList: data.stockList,
@@ -127,6 +128,47 @@ class Cart extends React.Component {
 
     const tax = subtotalDiscount * 0.1;
     const total = subtotalDiscount + tax;
+
+    const onSubmit = async (e) => {
+      // e.preventDefault();
+      console.log('Get in onsubmit');
+      const data = await CartPlain.fetchData();
+      if (data) {
+        const newStockList = data.stockList;
+
+        const newMergeList = [];
+        for (let i = 0; i < dishes.length; i += 1) {
+          newMergeList.push({
+            ...dishes[i],
+            ...(newStockList.find(item => item.dishId === dishes[i].dishId)),
+          });
+        }
+        const newCartDishes = newMergeList.filter(
+          dish => Object.keys(cartItems).indexOf(dish.dishId.toString()) !== -1,
+        );
+
+        let isValid = Boolean(true);
+        for (let k = 0; k < newCartDishes.length; k += 1) {
+          console.log('Get in onsubmit loop');
+          const amount = cartItems[newCartDishes[k].dishId.toString()];
+          const { stock } = newCartDishes[k];
+          if (amount > stock) {
+            isValid = Boolean(false);
+          }
+        }
+
+        console.log(isValid);
+        if (!isValid) {
+          e.preventDefault();
+          Alert.error('Stock has been updated. Please press refresh button to see the changes!', 5000);
+        } else {
+          // eslint-disable-next-line react/destructuring-assignment
+          this.props.history.push('/placeorder');
+        }
+      } else {
+        e.preventDefault();
+      }
+    };
 
     return (
       <div
@@ -217,12 +259,15 @@ class Cart extends React.Component {
                 </Button>
               </div>
               <div style={{ marginLeft: '5px' }}>
+                {/* <LinkContainer exact to="/placeorder"> */}
                 <Button
                   size="sm"
                   variant="dark"
+                  onClick={onSubmit}
                 >
                   Fill Pickup Info
                 </Button>
+                {/* </LinkContainer> */}
               </div>
               <div />
             </div>
@@ -233,5 +278,7 @@ class Cart extends React.Component {
   }
 }
 
-Cart.contextType = UserContext;
+CartPlain.contextType = UserContext;
+const Cart = withRouter(CartPlain);
+delete Cart.contextType;
 export default Cart;
