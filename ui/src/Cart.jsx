@@ -100,11 +100,6 @@ class CartPlain extends React.Component {
       dish => Object.keys(cartItems).indexOf(dish.dishId.toString()) !== -1,
     );
 
-    console.log('???Stock List???????');
-    console.log(stockList);
-    console.log(mergeList);
-    console.log(cartDishes);
-
     const cartRows = cartDishes.map(dish => (
       <CartRow
         key={dish.id}
@@ -196,25 +191,7 @@ class CartPlain extends React.Component {
                 {cartRows}
               </tbody>
             </Table>
-
           </Panel>
-          {/* <Panel>
-            <Form>
-              <Form.Group as={Row}>
-                <Form.Label htmlFor="request" column md={2}>Special Request</Form.Label>
-                <Col md={10}>
-                  <Form.Control
-                    as="textarea"
-                    id="comment"
-                    name="comment"
-                    rows={6}
-                    value={request}
-                    onChange={this.handleInputChange}
-                  />
-                </Col>
-              </Form.Group>
-            </Form>
-          </Panel> */}
           <Panel>
             <div className="row">
               <div className="col-10 col-md-8">

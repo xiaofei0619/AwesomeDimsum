@@ -7,12 +7,16 @@ import {
   PanelGroup, Panel,
 } from 'rsuite';
 import { LinkContainer } from 'react-router-bootstrap';
+import { withRouter } from 'react-router-dom';
 import graphQLFetch from './graphQLFetch.js';
 import store from './store.js';
 import UserContext from './UserContext.js';
 
-class PlaceOrder extends React.Component {
+const shortid = require('shortid');
+
+class PlaceOrderPlain extends React.Component {
   static async fetchStock() {
+    console.log('fetchStock called');
     const data = await graphQLFetch(`query {
       stockList {
         dishId stock
@@ -22,6 +26,7 @@ class PlaceOrder extends React.Component {
   }
 
   static async updateStock(dishId, newStock) {
+    console.log('updateStock called');
     const query = `mutation stockUpdate(
       $dishId: Int!,
       $stock: Int!
@@ -38,6 +43,7 @@ class PlaceOrder extends React.Component {
   }
 
   static async placeOrder(newOrder) {
+    console.log('placeOrder called');
     const query = `mutation orderAdd(
       $order: OrderInputs!
     ){
@@ -52,22 +58,9 @@ class PlaceOrder extends React.Component {
     return data;
   }
 
-//   orderAdd(order: OrderInputs!): Order!
-//   input OrderInputs {
-//     orderId: String!
-//     name: String!  
-//     phone: String!
-//     pickup: GraphQLDate!
-//     subtotal: Float!
-//     tax: Float!
-//     total: Float!
-//     items: String!
-//     request: String!
-//   }
-
   constructor(props) {
     super(props);
-    this.webOpenTime = new Date('2021-10-17T11:24:00-07:00');
+    this.webOpenTime = new Date();
     this.state = {
       name: '',
       phone: '',
@@ -172,6 +165,7 @@ class PlaceOrder extends React.Component {
 
     console.log('Rendering pickup state in reder()...');
     if (pickup !== '') {
+      console.log(typeof pickup);
       console.log(new Date(pickup).getTime());
       console.log(new Date(pickup).toLocaleTimeString());
     }
@@ -219,6 +213,100 @@ class PlaceOrder extends React.Component {
     // 1995-12-17T22:24:00.000Z
     // birthday.toLocaleTimeString()
     // '2:24:00 PM'
+    const dishes = store.menuData;
+
+    const onSubmitOrder = async (e) => {
+      e.preventDefault();
+      console.log('Get in onsubmitOrder method');
+      // fetch stock list
+      const stockData = await PlaceOrderPlain.fetchStock();
+      if (stockData) {
+        console.log(stockData);
+        const { stockList } = stockData;
+        const mergeList = [];
+        for (let i = 0; i < dishes.length; i += 1) {
+          mergeList.push({
+            ...dishes[i],
+            ...(stockList.find(item => item.dishId === dishes[i].dishId)),
+          });
+        }
+        // cartDishes is an array of dishes info including stock for the selected items in the cart
+        const cartDishes = mergeList.filter(
+          dish => Object.keys(cartItems).indexOf(dish.dishId.toString()) !== -1,
+        );
+
+        // Do the calculation
+        let subtotal = 0.0;
+        let subtotalDiscount = 0.0;
+        for (let j = 0; j < cartDishes.length; j += 1) {
+          const amount = cartItems[cartDishes[j].dishId.toString()];
+          const unitPrice = cartDishes[j].price;
+          subtotal += amount * unitPrice;
+        }
+        if (subtotal >= 60.0) {
+          subtotalDiscount = subtotal * 0.85;
+        } else {
+          subtotalDiscount = subtotal;
+        }
+        const tax = subtotalDiscount * 0.1;
+        const total = subtotalDiscount + tax;
+
+        // loop through dish items to update stock
+        let successUpdateStock = Boolean(true);
+        for (let k = 0; k < cartDishes.length; k += 1) {
+          const cartDishId = cartDishes[k].dishId;
+          const originStock = cartDishes[k].stock;
+          const cartAmount = cartItems[cartDishId.toString()];
+          const newStock = originStock - cartAmount;
+
+          // eslint-disable-next-line no-await-in-loop
+          const updateStockData = await PlaceOrderPlain.updateStock(cartDishId, newStock);
+          console.log(updateStockData);
+          if (!updateStockData) {
+            successUpdateStock = Boolean(false);
+          }
+        }
+
+        // create orderId and place newOrder
+        if (successUpdateStock) {
+          const orderId = shortid.generate();
+          const newOrder = {};
+          newOrder.orderId = orderId;
+          newOrder.name = name;
+          newOrder.phone = phone;
+          newOrder.pickup = new Date(pickup);
+          newOrder.request = request;
+          newOrder.subtotal = subtotal;
+          newOrder.subtotalDiscount = subtotalDiscount;
+          newOrder.tax = tax;
+          newOrder.total = total;
+          newOrder.items = JSON.stringify(cartItems);
+          console.log(newOrder);
+
+          const addOrderData = await PlaceOrderPlain.placeOrder(newOrder);
+          if (addOrderData) {
+            console.log(addOrderData);
+            user.updateCartItems({});
+            this.setState = ({
+              name: '',
+              phone: '',
+              request: '',
+              pickup: '',
+              touched: {
+                name: false,
+                phone: false,
+                pickup: false,
+                request: false,
+              },
+            });
+            // eslint-disable-next-line react/destructuring-assignment
+            this.props.history.push(`/ordersuccess/${addOrderData.orderAdd.orderId}`);
+          }
+        }
+      } else {
+        e.preventDefault();
+      }
+    };
 
     return (
       <div
@@ -329,22 +417,12 @@ class PlaceOrder extends React.Component {
                         size="md"
                         variant="dark"
                         disabled={errors.name !== '' || errors.phone !== '' || errors.pickup !== ''}
-                        // onClick={onSubmit}
+                        onClick={onSubmitOrder}
                       >
                         PLACE ORDER
                       </Button>
                     </div>
                   </div>
-                  {/* <Col md={{ size: 10, offset: 2 }}>
-                    <Button
-                      type="submit"
-                      variant="light"
-                      disabled={errors.author !== '' || errors.comment !== ''}
-                      onClick={addComment}
-                    >
-                      ADD REVIEW
-                    </Button>
-                  </Col> */}
                 </Form>
               </div>
             </div>
@@ -356,5 +434,10 @@ class PlaceOrder extends React.Component {
   }
 }
 
-PlaceOrder.contextType = UserContext;
+PlaceOrderPlain.contextType = UserContext;
+const PlaceOrder = withRouter(PlaceOrderPlain);
+delete PlaceOrder.contextType;
+// PlaceOrder.fetchStock = PlaceOrderPlain.fetchStock;
+// PlaceOrder.updateStock = PlaceOrderPlain.updateStock;
+// PlaceOrder.placeOrder = PlaceOrderPlain.placeOrder;
 export default PlaceOrder;

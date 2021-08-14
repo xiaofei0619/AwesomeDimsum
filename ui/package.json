@@ -46,6 +46,7 @@
     "react-select": "^2.4.4",
     "rsuite": "^4.10.2",
     "serialize-javascript": "^1.9.1",
+    "shortid": "^2.2.16",
     "url-search-params": "^1.1.0"
   },
   "devDependencies": {

@@ -91,12 +91,7 @@ export default class Page extends React.Component {
           cartItems: items,
         },
       }));
-      // if (localStorage) {
-      //   console.log('Updating cartItems to localStorage...');
-      //   localStorage.setItem('cartItems', JSON.stringify(items));
-      // } else {
-      //   console.log('Updating cartItems to Context only during server-side rendering.');
-      // }
+
       try {
         console.log('Updating localStorage....');
         localStorage.setItem('cartItems', JSON.stringify(items));
