@@ -12,9 +12,62 @@ import store from './store.js';
 import UserContext from './UserContext.js';
 
 class PlaceOrder extends React.Component {
+  static async fetchStock() {
+    const data = await graphQLFetch(`query {
+      stockList {
+        dishId stock
+      }
+    }`);
+    return data;
+  }
+
+  static async updateStock(dishId, newStock) {
+    const query = `mutation stockUpdate(
+      $dishId: Int!,
+      $stock: Int!
+    ){
+      stockUpdate (
+        dishId: $dishId,
+        stock: $stock
+      ) {
+        dishId stock
+      }
+    }`;
+    const data = await graphQLFetch(query, { dishId, stock: newStock });
+    return data;
+  }
+
+  static async placeOrder(newOrder) {
+    const query = `mutation orderAdd(
+      $order: OrderInputs!
+    ){
+      orderAdd (
+        order: $order
+      ) {
+        id orderId status name phone created pickup
+        subtotal subtotalDiscount tax total items request
+      }
+    }`;
+    const data = await graphQLFetch(query, { order: newOrder });
+    return data;
+  }
+
+//   orderAdd(order: OrderInputs!): Order!
+//   input OrderInputs {
+//     orderId: String!
+//     name: String!  
+//     phone: String!
+//     pickup: GraphQLDate!
+//     subtotal: Float!
+//     tax: Float!
+//     total: Float!
+//     items: String!
+//     request: String!
+//   }
+
   constructor(props) {
     super(props);
-    this.webOpenTime = new Date('2021-10-17T11:24:00-08:00');
+    this.webOpenTime = new Date('2021-10-17T11:24:00-07:00');
     this.state = {
       name: '',
       phone: '',

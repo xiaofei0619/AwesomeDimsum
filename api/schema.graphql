@@ -111,6 +111,7 @@ type Order {
     created: GraphQLDate!
     pickup: GraphQLDate!
     subtotal: Float!
+    subtotalDiscount: Float!
     tax: Float!
     total: Float!
     items: String!
@@ -135,6 +136,7 @@ input OrderInputs {
     phone: String!
     pickup: GraphQLDate!
     subtotal: Float!
+    subtotalDiscount: Float!
     tax: Float!
     total: Float!
     items: String!
