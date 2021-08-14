@@ -7,12 +7,14 @@ import Home from './Home.jsx';
 import Menu from './Menu.jsx';
 import OrderDish from './OrderDish.jsx';
 import Cart from './Cart.jsx';
+import PlaceOrder from './PlaceOrder.jsx';
 
 const routes = [
   { path: '/home', component: Home },
   { path: '/menu', component: Menu },
   { path: '/order/:dishId', component: OrderDish },
   { path: '/cart', component: Cart },
+  { path: '/placeorder', component: PlaceOrder },
   { path: '/issues/:id?', component: IssueList },
   { path: '/edit/:id', component: IssueEdit },
   { path: '/report', component: IssueReport },
