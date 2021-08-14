@@ -162,10 +162,6 @@ class PlaceOrder extends React.Component {
       </option>
     ));
 
-    // console.log(showSlots[0]);
-    // console.log(showSlots[0].toLocaleTimeString());
-
-
     // birthday = new Date('1995-12-17T14:24:00-08:00')
     // 1995-12-17T22:24:00.000Z
     // birthday.toLocaleTimeString()
@@ -264,12 +260,38 @@ class PlaceOrder extends React.Component {
                         name="pickup"
                         onBlur={this.handleBlur}
                         onChange={this.handleInputChange}
+                        isValid={errors.pickup === ''}
+                        isInvalid={errors.pickup !== ''}
                       >
                         <option value="">&nbsp;&nbsp;&nbsp;</option>
                         {slotOptions}
                       </Form.Control>
+                      <Form.Control.Feedback type="invalid">{errors.pickup}</Form.Control.Feedback>
                     </Col>
                   </Form.Group>
+                  <div className="d-flex justify-content-end" style={{ marginTop: '20px' }}>
+                    <div>
+                      <Button
+                        type="submit"
+                        size="md"
+                        variant="dark"
+                        disabled={errors.name !== '' || errors.phone !== '' || errors.pickup !== ''}
+                        // onClick={onSubmit}
+                      >
+                        PLACE ORDER
+                      </Button>
+                    </div>
+                  </div>
+                  {/* <Col md={{ size: 10, offset: 2 }}>
+                    <Button
+                      type="submit"
+                      variant="light"
+                      disabled={errors.author !== '' || errors.comment !== ''}
+                      onClick={addComment}
+                    >
+                      ADD REVIEW
+                    </Button>
+                  </Col> */}
                 </Form>
               </div>
             </div>

@@ -269,7 +269,6 @@ class CartPlain extends React.Component {
                 </Button>
                 {/* </LinkContainer> */}
               </div>
-              <div />
             </div>
           </Panel>
         </PanelGroup>
