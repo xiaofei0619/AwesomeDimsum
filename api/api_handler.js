@@ -25,6 +25,7 @@ const resolvers = {
 
     orderList: order.listOrder,
     order: order.getOrder,
+    orderWithOrderId: order.getOrderWithOrderId,
     orderStatusList: order.listOrderStatus,
     orderStatus: order.getOrderStatus,
   },

@@ -15,6 +15,8 @@ export default async function render(req, res) {
   const activeRoute = routes.find(
     route => matchPath(req.path, route),
   );
+  console.log('what is active route??');
+  console.log(activeRoute);
 
   let initialData;
   if (activeRoute && activeRoute.component.fetchData) {
