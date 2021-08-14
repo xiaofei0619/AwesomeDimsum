@@ -412,6 +412,16 @@ class PlaceOrderPlain extends React.Component {
                   </Form.Group>
                   <div className="d-flex justify-content-end" style={{ marginTop: '20px' }}>
                     <div>
+                      <LinkContainer to="/cart">
+                        <Button
+                          size="md"
+                          variant="dark"
+                        >
+                          BACK TO CART
+                        </Button>
+                      </LinkContainer>
+                    </div>
+                    <div style={{ marginLeft: '5px' }}>
                       <Button
                         type="submit"
                         size="md"

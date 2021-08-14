@@ -228,7 +228,7 @@ class CartPlain extends React.Component {
             <div className="d-flex justify-content-end">
               <div>
                 <Button
-                  size="sm"
+                  size="md"
                   variant="dark"
                   onClick={this.loadData}
                 >
@@ -236,15 +236,13 @@ class CartPlain extends React.Component {
                 </Button>
               </div>
               <div style={{ marginLeft: '5px' }}>
-                {/* <LinkContainer exact to="/placeorder"> */}
                 <Button
-                  size="sm"
+                  size="md"
                   variant="dark"
                   onClick={onSubmit}
                 >
                   Fill Pickup Info
                 </Button>
-                {/* </LinkContainer> */}
               </div>
             </div>
           </Panel>
