@@ -3,10 +3,10 @@ import {
   Button, Form, Col, Row,
 } from 'react-bootstrap';
 import {
-  Alert, PanelGroup, Panel,
+  Alert, PanelGroup,
 } from 'rsuite';
 import graphQLFetch from './graphQLFetch.js';
-import store from './store.js';
+import OrderDetail from './OrderDetail.jsx';
 
 class OrderTracker extends React.Component {
   static async orderStatus(name, orderId) {
@@ -19,7 +19,7 @@ class OrderTracker extends React.Component {
         name: $name,
         orderId: $orderId
       ) {
-        orderId status items subtotal subtotalDiscount tax total
+        _id id orderId status items subtotal subtotalDiscount tax total
         request name phone created pickup
       }
     }`;
@@ -37,7 +37,7 @@ class OrderTracker extends React.Component {
         name: $name,
         phone: $phone
       ) {
-        orderId status items subtotal subtotalDiscount tax total
+        _id id orderId status items subtotal subtotalDiscount tax total
         request name phone created pickup
       }
     }`;
@@ -168,88 +168,99 @@ class OrderTracker extends React.Component {
       });
     };
 
+    const orderDetails = trackResult.map(
+      (order, index) => <OrderDetail key={index.toString()} order={order} />,
+    );
+
     return (
       <div
         className="container"
         style={{
-          marginTop: '25px',
-          marginBottom: '20px',
+          marginTop: '45px',
+          marginBottom: '40px',
           marginLeft: '20px',
           marginRight: '10px',
         }}
       >
-        <div className="col-12 col-md-4">
-          <Form>
-            <Form.Group as={Row} style={{ marginBottom: '8px' }}>
-              <Form.Label htmlFor="name" column md={3}>Name</Form.Label>
-              <Col md={9}>
-                <Form.Control
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Your Name"
-                  value={name}
-                  isValid={errors.name === ''}
-                  isInvalid={errors.name !== ''}
-                  onBlur={this.handleBlur}
-                  onChange={this.handleInputChange}
-                />
-                <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} style={{ marginBottom: '8px' }}>
-              <Form.Label htmlFor="phone" column md={3}>Phone</Form.Label>
-              <Col md={9}>
-                <Form.Control
-                  type="text"
-                  id="phone"
-                  name="phone"
-                  placeholder="(xxx) xxx-xxxx"
-                  value={phone}
-                  isValid={errors.phone === ''}
-                  isInvalid={errors.phone !== ''}
-                  onBlur={this.handleBlur}
-                  onChange={this.handleInputChange}
-                />
-                <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} style={{ marginBottom: '8px' }}>
-              <Form.Label htmlFor="orderId" column md={3}>Order ID</Form.Label>
-              <Col md={9}>
-                <Form.Control
-                  type="text"
-                  id="orderId"
-                  name="orderId"
-                  placeholder="Order ID"
-                  value={orderId}
-                  isValid={errors.orderId === ''}
-                  isInvalid={errors.orderId !== ''}
-                  onBlur={this.handleBlur}
-                  onChange={this.handleInputChange}
-                />
-                <Form.Control.Feedback type="invalid">{errors.orderId}</Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <h6>Note: To track a specific order, please enter your name and order id.</h6>
-            <h6>
-              Note: If you do not remember order id, please enter your name and phone number to
-              get the entire order history.
-            </h6>
-            <div className="d-flex justify-content-end" style={{ marginTop: '10px' }}>
-              <div>
-                <Button
-                  type="submit"
-                  size="md"
-                  variant="dark"
-                  disabled={!(errors.name === '' && errors.phone === '') && !(errors.name === '' && errors.orderId === '')}
-                  onClick={onSubmitTrack}
-                >
-                  TRACK MY ORDER
-                </Button>
+        <div className="row d-flex justify-content-between">
+          <div className="col-12 col-md-4 col-lg-5">
+            <Form>
+              <Form.Group as={Row} style={{ marginBottom: '8px' }}>
+                <Form.Label htmlFor="name" column md={3}>Name</Form.Label>
+                <Col md={9}>
+                  <Form.Control
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your Name"
+                    value={name}
+                    isValid={errors.name === ''}
+                    isInvalid={errors.name !== ''}
+                    onBlur={this.handleBlur}
+                    onChange={this.handleInputChange}
+                  />
+                  <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} style={{ marginBottom: '8px' }}>
+                <Form.Label htmlFor="phone" column md={3}>Phone</Form.Label>
+                <Col md={9}>
+                  <Form.Control
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    placeholder="(xxx) xxx-xxxx"
+                    value={phone}
+                    isValid={errors.phone === ''}
+                    isInvalid={errors.phone !== ''}
+                    onBlur={this.handleBlur}
+                    onChange={this.handleInputChange}
+                  />
+                  <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} style={{ marginBottom: '8px' }}>
+                <Form.Label htmlFor="orderId" column md={3}>Order ID</Form.Label>
+                <Col md={9}>
+                  <Form.Control
+                    type="text"
+                    id="orderId"
+                    name="orderId"
+                    placeholder="Order ID"
+                    value={orderId}
+                    isValid={errors.orderId === ''}
+                    isInvalid={errors.orderId !== ''}
+                    onBlur={this.handleBlur}
+                    onChange={this.handleInputChange}
+                  />
+                  <Form.Control.Feedback type="invalid">{errors.orderId}</Form.Control.Feedback>
+                </Col>
+              </Form.Group>
+              <h6>Note: To track a specific order, please enter your name and order id.</h6>
+              <h6>
+                Note: If you do not remember order id, please enter your name and phone number to
+                get the entire order history.
+              </h6>
+              <div className="d-flex justify-content-end" style={{ marginTop: '10px' }}>
+                <div>
+                  <Button
+                    type="submit"
+                    size="md"
+                    variant="dark"
+                    disabled={!(errors.name === '' && errors.phone === '') && !(errors.name === '' && errors.orderId === '')}
+                    onClick={onSubmitTrack}
+                  >
+                    TRACK MY ORDER
+                  </Button>
+                </div>
               </div>
-            </div>
-          </Form>
+            </Form>
+          </div>
+          <div className="col-12 col-md-7 col-lg-6" style={{ marginLeft: '10px' }}>
+            <PanelGroup accordion bordered>
+              {orderDetails}
+            </PanelGroup>
+          </div>
         </div>
       </div>
     );
