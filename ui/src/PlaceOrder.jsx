@@ -163,13 +163,6 @@ class PlaceOrderPlain extends React.Component {
     } = this.state;
     const errors = this.validate(name, phone, pickup);
 
-    console.log('Rendering pickup state in reder()...');
-    if (pickup !== '') {
-      console.log(typeof pickup);
-      console.log(new Date(pickup).getTime());
-      console.log(new Date(pickup).toLocaleTimeString());
-    }
-
     // get open page date
     const year = this.webOpenTime.getFullYear();
     const month = ('0' + (this.webOpenTime.getMonth() + 1)).slice(-2);
@@ -217,7 +210,6 @@ class PlaceOrderPlain extends React.Component {
 
     const onSubmitOrder = async (e) => {
       e.preventDefault();
-      console.log('Get in onsubmitOrder method');
       // fetch stock list
       const stockData = await PlaceOrderPlain.fetchStock();
       if (stockData) {

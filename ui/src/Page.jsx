@@ -41,6 +41,9 @@ class MyNavBar extends React.Component {
               <LinkContainer exact to="/menu">
                 <Nav.Link>ORDER</Nav.Link>
               </LinkContainer>
+              <LinkContainer exact to="/trackorder">
+                <Nav.Link>TRACK ORDER</Nav.Link>
+              </LinkContainer>
               <LinkContainer exact to="/report">
                 <Nav.Link>REPORT</Nav.Link>
               </LinkContainer>
