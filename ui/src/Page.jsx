@@ -154,15 +154,19 @@ export default class Page extends React.Component {
     if (user == null) return null;
     return (
       <div>
-        <UserContext.Provider value={user}>
-          <MyNavBar onUserChange={this.onUserChange} />
-        </UserContext.Provider>
+        <div>
+          <UserContext.Provider value={user}>
+            <MyNavBar onUserChange={this.onUserChange} />
+          </UserContext.Provider>
+        </div>
         <div className="container-fluid px-0">
           <UserContext.Provider value={user}>
             <Contents />
           </UserContext.Provider>
         </div>
-        <Footer />
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }

@@ -12,7 +12,7 @@ import './Footer.css';
 
 function Footer() {
   return (
-    <div className="footer">
+    <div id="footer">
       <div className="container">
         <div className="row justify-content-center">
           <div className="footerElement col-4 col-lg-2">

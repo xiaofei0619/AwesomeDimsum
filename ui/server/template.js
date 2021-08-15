@@ -14,6 +14,10 @@ export default function template(body, initialData, userData, menuData) {
     <script src="https://apis.google.com/js/api:client.js"></script>
     
     <style>
+      // body {
+      //   background-image: url("/image/bird_trans.png");
+      //   background-repeat: repeat;
+      // }
       table.table-hover tr {cursor: pointer;}
       .panel-title a {display: block; width: 100%; cursor: pointer;}
     </style>
