@@ -1,12 +1,12 @@
 import React from 'react';
 import URLSearchParams from 'url-search-params';
 import {
-  Accordion, Card, Pagination, Button,
+  Accordion, Card, Pagination,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import OrderFilter from './OrderFilter.jsx';
-import IssueTable from './IssueTable.jsx';
+import OrderTable from './OrderTable.jsx';
 import OrderDetail from './OrderDetail.jsx';
 import graphQLFetch from './graphQLFetch.js';
 import withToast from './withToast.jsx';
@@ -158,6 +158,8 @@ class OrderList extends React.Component {
 
   render() {
     const { orders } = this.state;
+    console.log('OrderList ... current orders are ...');
+    console.log(orders);
     if (orders == null) return null;
 
     const { selectedOrder, pages } = this.state;
@@ -198,8 +200,12 @@ class OrderList extends React.Component {
             </Card>
           </Accordion>
           <hr />
+          <OrderTable
+            orders={orders}
+            updateOrder={this.updateOrder}
+          />
           <OrderDetail order={selectedOrder} />
-          <Pagination>
+          <Pagination style={{ marginTop: '15px' }}>
             <PageLink params={params} page={prevSection}>
               <Pagination.Item>{'<'}</Pagination.Item>
             </PageLink>

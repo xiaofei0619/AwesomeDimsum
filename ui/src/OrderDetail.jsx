@@ -35,7 +35,7 @@ export default function IssueDetail({ order }) {
           <p>{`Tax:                    $${order.tax}`}</p>
           <p>{`Total:                  $${order.total}`}</p>
           <p>{`Order Placed Time:      ${order.created.toLocaleString()} PST`}</p>
-          <p>{`Order Placed Time:      ${order.pickup.toLocaleString()} PST`}</p>
+          <p>{`Order PickUp Time:      ${order.pickup.toLocaleString()} PST`}</p>
           <p>{`Special Request:        ${order.request}`}</p>
         </div>
         <div className="container" style={{ marginTop: '15px' }}>
