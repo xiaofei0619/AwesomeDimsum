@@ -10,6 +10,7 @@ import Cart from './Cart.jsx';
 import PlaceOrder from './PlaceOrder.jsx';
 import OrderSuccess from './OrderSuccess.jsx';
 import OrderTracker from './OrderTracker.jsx';
+import OrderList from './OrderList.jsx';
 
 const routes = [
   { path: '/home', component: Home },
@@ -19,6 +20,7 @@ const routes = [
   { path: '/placeorder', component: PlaceOrder },
   { path: '/ordersuccess/:orderId', component: OrderSuccess },
   { path: '/trackorder', component: OrderTracker },
+  { path: '/orders/:id?', component: OrderList },
   { path: '/issues/:id?', component: IssueList },
   { path: '/edit/:id', component: IssueEdit },
   { path: '/report', component: IssueReport },

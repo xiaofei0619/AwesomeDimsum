@@ -180,6 +180,7 @@ class OrderTracker extends React.Component {
           marginBottom: '40px',
           marginLeft: '20px',
           marginRight: '10px',
+          minHeight: '600px',
         }}
       >
         <div className="row d-flex justify-content-between">

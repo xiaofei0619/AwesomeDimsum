@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-  Form, Col, Row,
-} from 'react-bootstrap';
 import { Panel } from 'rsuite';
 import store from './store.js';
 

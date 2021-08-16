@@ -39,19 +39,19 @@ class MyNavBar extends React.Component {
                 <Nav.Link>HOME</Nav.Link>
               </LinkContainer>
               <LinkContainer exact to="/menu">
-                <Nav.Link>ORDER</Nav.Link>
+                <Nav.Link>MENU</Nav.Link>
               </LinkContainer>
               <LinkContainer exact to="/trackorder">
                 <Nav.Link>TRACK ORDER</Nav.Link>
+              </LinkContainer>
+              <LinkContainer exact to="/orders">
+                <Nav.Link>ORDER MANAGER</Nav.Link>
               </LinkContainer>
               <LinkContainer exact to="/report">
                 <Nav.Link>REPORT</Nav.Link>
               </LinkContainer>
               <LinkContainer exact to="/issues">
                 <Nav.Link>ISSUES</Nav.Link>
-              </LinkContainer>
-              <LinkContainer exact to="/about">
-                <Nav.Link>ABOUT</Nav.Link>
               </LinkContainer>
             </Nav>
             <Nav>
