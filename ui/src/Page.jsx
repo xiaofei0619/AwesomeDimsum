@@ -47,11 +47,11 @@ class MyNavBar extends React.Component {
               <LinkContainer exact to="/orders">
                 <Nav.Link>ORDER MANAGER</Nav.Link>
               </LinkContainer>
+              <LinkContainer exact to="/stocks">
+                <Nav.Link>STOCK MANAGER</Nav.Link>
+              </LinkContainer>
               <LinkContainer exact to="/report">
                 <Nav.Link>REPORT</Nav.Link>
-              </LinkContainer>
-              <LinkContainer exact to="/issues">
-                <Nav.Link>ISSUES</Nav.Link>
               </LinkContainer>
             </Nav>
             <Nav>

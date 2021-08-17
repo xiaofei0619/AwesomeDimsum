@@ -162,7 +162,6 @@ class OrderFilter extends React.Component {
                     name="search"
                     placeholder="Name or OrderId"
                     value={searchStr}
-                    onBlur={this.handleBlur}
                     onChange={this.onChangeSearch}
                   />
                 </Col>
