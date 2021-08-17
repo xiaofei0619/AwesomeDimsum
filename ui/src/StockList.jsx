@@ -5,51 +5,44 @@ import {
 } from 'react-bootstrap';
 
 import StockFilter from './StockFilter.jsx';
+import StockTable from './StockTable.jsx';
 import graphQLFetch from './graphQLFetch.js';
 import withToast from './withToast.jsx';
 import store from './store.js';
 
 class StockList extends React.Component {
   static async fetchData(match, search, showError) {
-    console.log(match);
     const params = new URLSearchParams(search);
     const vars = {};
-    let query = '';
-    if (params.get('search') && params.get('search').length >= 3) {
+    let query;
+    if (params.get('search')) {
       vars.search = params.get('search');
       query = `query menuList($search: String) {
-          menuList(search: $search) {
-            id dishId name image category price description
-          }
-          stockList {
-            dishId stock
-          }
-        }`;
+        menuList(search: $search) {
+          id dishId name image category price description
+        }
+        stockList {
+          dishId stock
+        }
+      }`;
     } else {
       query = `query {
-          stockList {
-            dishId stock
-          }
-        }`;
+        stockList {
+          dishId stock
+        }
+      }`;
     }
+
     const data = await graphQLFetch(query, vars, showError);
     return data;
   }
 
   constructor(props) {
     super(props);
-    console.log('In StockList constructor..');
-    console.log(store.initialData);
 
-    const menuList = store.initialData.menuList ? store.initialData.menuList : store.menuData;
+    const menuList = store.initialData?.menuList ? store.initialData.menuList : store.menuData;
     const stockList = store.initialData ? store.initialData.stockList : null;
-    // const mergeList = [];
-    // for (let i = 0; i < menuList.length; i += 1) {
-    //   mergeList.push({
-    //     ...menuList[i],
-    //     ...(stockList.find(item => item.dishId === menuList[i].dishId)),
-    //   });
-    // }
+
     delete store.initialData;
     this.state = {
       menuList, stockList,
@@ -79,18 +72,19 @@ class StockList extends React.Component {
   async loadData() {
     const { location: { search }, match, showError } = this.props;
     const data = await StockList.fetchData(match, search, showError);
-    if (data) {
-      const menuList = data.menuList ? data.menuList : store.menuData;
-      const stockList = data.stockList ? data.stockList : null;
-      //   const mergeList = [];
-      //   for (let i = 0; i < menuList.length; i += 1) {
-      //     mergeList.push({
-      //       ...menuList[i],
-      //       ...(stockList.find(item => item.dishId === menuList[i].dishId)),
-      //     });
-      //   }
+
+    if(data.stockList) {
       this.setState({
-        menuList, stockList,
+        stockList: data.stockList,
+      });
+    }
+    if(data?.menuList) {
+      this.setState({
+        menuList: data.menuList,
+      });
+    } else {
+      this.setState({
+        menuList: store.menuData,
       });
     }
   }
@@ -108,19 +102,33 @@ class StockList extends React.Component {
           dishId stock
         }
       }`;
-    const { menuList } = this.state;
+    const { menuList, stockList } = this.state;
+    const updateDishId = menuList[index].dishId;
     const { showError } = this.props;
     const data = await graphQLFetch(
       query,
-      { dishId: menuList[index].dishId, stock: newStock },
+      { dishId: updateDishId, stock: newStock },
       showError,
     );
     if (data) {
-      this.setState((prevState) => {
-        const newList = [...prevState.stockList];
-        newList[menuList[index].dishId].stock = data.stockUpdate.stock;
-        return { stockList: newList };
-      });
+      console.log('During UpdateStock callback function/');
+      console.log(data);
+
+      const newList = [...stockList];
+      console.log(newList);
+      console.log(Object.keys(newList));
+
+      for (let i = 0; i < newList.length; i += 1) {
+        if (newList[i].dishId === updateDishId) {
+          newList[i].stock = data.stockUpdate.stock;
+        }
+      }
+
+
+      // const updateIndex = Object.keys(newList).indexOf(updateDishId);
+      // newList[updateIndex].stock = data.stockUpdate.stock;
+      this.setState({ stockList: newList });
+
     } else {
       this.loadData();
     }
@@ -161,6 +169,10 @@ class StockList extends React.Component {
             </Card>
           </Accordion>
           <hr />
+          <StockTable
+            mergeList={mergeList}
+            updateStock={this.updateStock}
+          />
         </React.Fragment>
       </div>
     );
