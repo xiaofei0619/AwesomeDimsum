@@ -123,12 +123,7 @@ class StockList extends React.Component {
           newList[i].stock = data.stockUpdate.stock;
         }
       }
-
-
-      // const updateIndex = Object.keys(newList).indexOf(updateDishId);
-      // newList[updateIndex].stock = data.stockUpdate.stock;
       this.setState({ stockList: newList });
-
     } else {
       this.loadData();
     }
@@ -154,7 +149,7 @@ class StockList extends React.Component {
     console.log(mergeList);
 
     return (
-      <div className="container" style={{ marginTop: '25px' }}>
+      <div className="container" style={{ marginTop: '25px', marginBottom: '40px' }}>
         <React.Fragment>
           <Accordion>
             <Card>

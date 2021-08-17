@@ -173,6 +173,7 @@ class CartPlain extends React.Component {
           marginBottom: '20px',
           marginLeft: '20px',
           marginRight: '10px',
+          minHeight: '600px',
         }}
       >
         <PanelGroup>

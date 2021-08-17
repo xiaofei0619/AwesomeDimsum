@@ -185,7 +185,7 @@ class OrderList extends React.Component {
     }
 
     return (
-      <div className="container" style={{ marginTop: '25px' }}>
+      <div className="container" style={{ marginTop: '25px', marginBottom: '40px', minHeight: '600px' }}>
         <React.Fragment>
           <Accordion>
             <Card>

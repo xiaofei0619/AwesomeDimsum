@@ -50,14 +50,11 @@ class MyNavBar extends React.Component {
               <LinkContainer exact to="/stocks">
                 <Nav.Link>STOCK MANAGER</Nav.Link>
               </LinkContainer>
-              <LinkContainer exact to="/report">
-                <Nav.Link>REPORT</Nav.Link>
-              </LinkContainer>
             </Nav>
             <Nav>
-              <Nav.Link>
+              {/* <Nav.Link>
                 <IssueAddNavItem user={user} />
-              </Nav.Link>
+              </Nav.Link> */}
               <Nav.Link>
                 <CartNavItem />
               </Nav.Link>
@@ -152,22 +149,23 @@ export default class Page extends React.Component {
 
   render() {
     const { user } = this.state;
-    console.log('!!!!!!!!');
-    console.log(user);
     if (user == null) return null;
     return (
-      <div>
-        <div>
-          <UserContext.Provider value={user}>
-            <MyNavBar onUserChange={this.onUserChange} />
-          </UserContext.Provider>
+      <div style={{ position: 'relative', minHeight: '100vh' }}>
+        <div style={{ paddingBottom: '95px' }}>
+          <div>
+            <UserContext.Provider value={user}>
+              <MyNavBar onUserChange={this.onUserChange} />
+            </UserContext.Provider>
+          </div>
+          <div className="container-fluid px-0">
+            <UserContext.Provider value={user}>
+              <Contents />
+            </UserContext.Provider>
+          </div>
         </div>
-        <div className="container-fluid px-0">
-          <UserContext.Provider value={user}>
-            <Contents />
-          </UserContext.Provider>
-        </div>
-        <div style={{ position: 'absolute', bottom: '0px', width: '100%' }}>
+        <div style={{ position: 'absolute', bottom: '0px', width: '100%', height: '95px' }}>
+          {/* style={{ position: 'absolute', bottom: '0px', width: '100%' }} */}
           <Footer />
         </div>
       </div>
