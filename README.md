@@ -18,20 +18,42 @@ https://github.com/xiaofei0619/AwesomeDimsum-ui
 For Iteration 3, I mainly worked on 1. Let customers fill in pickup information and place order; 2. Display order success page with order ID; 3. Embed Google Map to GetInTouch page; 4. Manage order status by staff; 5. Manage dish stock by staff. Following are the detailed design ideas and screenshots.
 
 **Shopping Cart Page**
+<br/>
 In Iteration 2, I implememnted the shopping cart page for customers to browse/edit order summary. In this iteration, I made the 'Fill Pickup Info' button to first check if the selected items/amount are still valid. If any item is not valid any more, an alert will show up to ask customers to press 'Refresh Cart' button to update the cart. Otherwise, if all items are valid, customers can move on to fill in pickup info.
 <br/>
 ![PreventOrderWithLowStock](/readme_images/PreventOrderWithLowStock.png)
 <br />
 Besides of that, I modified the context to store the lastest cart items to local storage. In this case, customers are able to keep their shopping cart items after reloading the webpage.
+<br/>
 
 **Fill Pickup Info Page**
+<br/>
 This page is for cutomers to fill in pickup information, including name, phone, special request and pickup timeslot. It only provide timeslots that are at least 30 minutes after the time customers open this page on the same day. Validations are applied to required name, phone and pickup timeslot. 
 <br/>
 ![PlaceOrderInvalidPhone](/readme_images/PlaceOrderInvalidPhone.png)
 <br />
 ![PlaceOrder](/readme_images/PlaceOrder.png)
 <br />
+After submitting the order, the dish stocks will be updated accordingly, and cutomers will be brought to a new page showing their order IDs.
+<br />
+![SuccessPlaceOrder](/readme_images/SuccessPlaceOrder.png)
+<br />
 
+**Track Order Page**
+This is the page for customers to track their order status/history. If customers enter their names and order ID correctly, the specific order detail will be shown. If customers enter their names and phone numbers correctly, their entire order history will be shown from newest to oldest.
+<br />
+![trackOrderidName](/readme_images/trackOrderidName.png)
+<br />
+![trackResult](/readme_images/trackResult.png)
+<br />
+![trackNamePhone](/readme_images/trackNamePhone.png)
+<br />
+![trackHistoryResult](/readme_images/trackHistoryResult.png)
+<br />
+If any information is not correct, it will show an error alert to inform the customers.
+<br />
+![trackFailed](/readme_images/trackFailed.png)
+<br />
 
 ## Final Project Iteration 2 Progress
 For this iteration, I mainly worked on the UI for customers to 1. browse the menu; 2. browse the previous comments for specific dish item; 3. add new review to the comments; 4. add items to shopping cart; 5. view/update order summary in the shopping cart. Following are the screenshots and detailed explainations.
