@@ -1,5 +1,6 @@
 import React from 'react';
 import FooterMap from './FooterMap.jsx';
+import './GetInTouch.css';
 
 function isInBrowser() {
   try {
@@ -15,7 +16,7 @@ function isInBrowser() {
 function GetInTouch() {
   return (
     <div id="contact">
-      <div className="container" style={{ marginTop: '60px', marginBottom: '50px', fontSize: 'large' }}>
+      <div className="container" style={{ marginTop: '80px', marginBottom: '100px', fontSize: 'large' }}>
         <div className="d-flex justify-content-around">
           <div className="col-12 col-lg-3">
             <h5>OUR WORKING HOURS</h5>
