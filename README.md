@@ -72,7 +72,7 @@ Order Manager Page contains a order filter, a table listing all the orders from 
 <br />
 ![OrderListWithoutLogin](/readme_images/orderlist_notLogin.png)
 <br />
-Here are some examples when different filter is applied:
+Here are some examples when different filters are applied:
 <br />
 ![OrderListFilterTime](/readme_images/orderlist_filterTime.png)
 <br />
@@ -85,6 +85,21 @@ I assume anyone not logged in are customers and anyone logged in are staffs. Onl
 The order table must also be responsive on this page. Here is the screenshot on a phone view:
 <br />
 ![OrderListOnSmallView](/readme_images/OrderListSmall.png)
+<br />
+
+**Stock Manager Page**
+<br />
+This stock manager page contains a text search bar and a table listing all the dish stocks. Any dish contains the word in their dish names or dish descriptions will be shown.
+<br />
+![StockListFilter](/readme_images/stocklist_filter.png)
+<br />
+Just like the Order Manager Page, staffs are allowed to modify the stocks in the popup modals. And the updated stock number will be immediately shown in the table.
+<br />
+![StockListUpdateStock](/readme_images/stocklist_updateStock.png)
+<br />
+Similarly, the stock table must also be responsive on this page. Here is the screenshot on a phone view:
+<br />
+![StockListOnSmallView](/readme_images/stocklist_small.png)
 <br />
 
 ## Final Project Iteration 2 Progress
