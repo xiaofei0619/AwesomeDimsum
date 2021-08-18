@@ -6,7 +6,7 @@ export default function template(body, initialData, userData, menuData) {
 
   <head>
     <meta charset="utf-8">
-    <title>Pro MERN Stack</title>
+    <title>Awesome Dimsum</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 

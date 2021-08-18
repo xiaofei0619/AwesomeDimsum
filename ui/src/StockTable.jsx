@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import StockRow from './StockRow.jsx';
+import './OrderTable.css';
 
 export default function StockTable({ mergeList, updateStock }) {
   const stockRows = mergeList.map((dish, index) => (
@@ -12,19 +13,21 @@ export default function StockTable({ mergeList, updateStock }) {
     />
   ));
   return (
-    <Table bordered hover responsive size="sm">
-      <thead>
-        <tr>
-          <th>Dish ID</th>
-          <th>Dish Name</th>
-          <th>Category</th>
-          <th>Current Stock</th>
-          <th>Update Stock</th>
-        </tr>
-      </thead>
-      <tbody>
-        {stockRows}
-      </tbody>
-    </Table>
+    <div className="table">
+      <Table bordered hover responsive size="sm">
+        <thead>
+          <tr>
+            <th>Dish ID</th>
+            <th>Dish Name</th>
+            <th>Category</th>
+            <th>Current Stock</th>
+            <th>Update Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stockRows}
+        </tbody>
+      </Table>
+    </div>
   );
 }
