@@ -34,12 +34,16 @@ This page is for cutomers to fill in pickup information, including name, phone, 
 <br />
 ![PlaceOrder](/readme_images/PlaceOrder.png)
 <br />
-After submitting the order, the dish stocks will be updated accordingly, and cutomers will be brought to a new page showing their order IDs.
+
+**Order Placed Successfully Page**
+<br/>
+After submitting the order, the dish stocks will be updated accordingly, and cutomers will be brought to this page showing their order ID and pickup time.
 <br />
 ![SuccessPlaceOrder](/readme_images/SuccessPlaceOrder.png)
 <br />
 
 **Track Order Page**
+<br/>
 This is the page for customers to track their order status/history. If customers enter their names and order ID correctly, the specific order detail will be shown. If customers enter their names and phone numbers correctly, their entire order history will be shown from newest to oldest.
 <br />
 ![trackOrderidName](/readme_images/trackOrderidName.png)
@@ -53,6 +57,34 @@ This is the page for customers to track their order status/history. If customers
 If any information is not correct, it will show an error alert to inform the customers.
 <br />
 ![trackFailed](/readme_images/trackFailed.png)
+<br />
+
+**Get In Touch Page**
+<br />
+This is a page shows contact information, restaurant address and a Google Map. There is a label marker centered on the map. With a click on the marker, it shows some basic information. This is done by creating a new Google Cloud Platform project with Google Maps Javascript API enabled and using the npm module called react-google-maps.
+<br />
+![GetInTouch](/readme_images/getInTouch.png)
+<br />
+
+**Order Manager Page**
+<br />
+Order Manager Page contains a order filter, a table listing all the orders from oldest to newest and the pagination. The order filter has a combination of order status, pickup time range and text search based on order ID and customer name. I use the DateTimePicker component from rsuite for showing the calendar. The order detail will be shown if a specific table row is clicked.
+<br />
+![OrderListWithoutLogin](/readme_images/orderlist_notLogin.png)
+<br />
+Here are some examples when different filter is applied:
+<br />
+![OrderListFilterTime](/readme_images/orderlist_filterTime.png)
+<br />
+![OrderListFilterName](/readme_images/orderlist_filterName.png)
+<br />
+I assume anyone not logged in are customers and anyone logged in are staffs. Only staffs are allowed to change the order status in the popup modal. Any change can be immediately shown in the table.
+<br />
+![ChangeOrderStatus](/readme_images/changeOrderStatus.png)
+<br />
+The order table must also be responsive on this page. Here is the screenshot on a phone view:
+<br />
+![OrderListOnSmallView](/readme_images/OrderListSmall.png)
 <br />
 
 ## Final Project Iteration 2 Progress
