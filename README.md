@@ -103,7 +103,16 @@ Similarly, the stock table must also be responsive on this page. Here is the scr
 <br />
 
 **Future Work**
+<br />
 At this point, all the functionalities are done. However, since anyone can login, the website can not distinguish who is customer and who is staff. I will need to create a table to store the staff info such that only staffs can view the Order Manager Page and Stock Manager Page.
+<br />
+
+**References**
+<br />
+https://en.wikipedia.org/wiki/Dim_sum
+<br />
+https://en.wikipedia.org/wiki/Yum_cha
+<br />
 
 ## Final Project Iteration 2 Progress
 For this iteration, I mainly worked on the UI for customers to 1. browse the menu; 2. browse the previous comments for specific dish item; 3. add new review to the comments; 4. add items to shopping cart; 5. view/update order summary in the shopping cart. Following are the screenshots and detailed explainations.
