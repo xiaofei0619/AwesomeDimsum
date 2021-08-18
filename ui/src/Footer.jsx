@@ -22,6 +22,7 @@ function Footer() {
               <li><Link to="/menu">Menu</Link></li>
               <li><Link to="/cart">Shopping Cart</Link></li>
               <li><Link to="/trackorder">Track My Order</Link></li>
+              <li><Link to="/getintouch">Get In Touch</Link></li>
             </ul>
           </div>
           <div className="footerElement col-8 col-lg-3">

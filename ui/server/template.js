@@ -8,16 +8,18 @@ export default function template(body, initialData, userData, menuData) {
     <meta charset="utf-8">
     <title>Pro MERN Stack</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" >
     <link href="/rsuite-default.min.css" rel="stylesheet">
 
     <script src="https://apis.google.com/js/api:client.js"></script>
     
     <style>
-      // body {
-      //   background-image: url("/image/bird_trans.png");
-      //   background-repeat: repeat;
-      // }
+      body {
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 16px;
+      }
       table.table-hover tr {cursor: pointer;}
       .panel-title a {display: block; width: 100%; cursor: pointer;}
     </style>
