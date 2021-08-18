@@ -15,6 +15,9 @@ dotenv.config();
 // process.env.RUN_ENV - process is not defined error
 const { env } = process;
 
+console.log('environ');
+console.log(JSON.stringify(env, null, 2));
+
 // use Hot Module Replacement
 const enableHMR = (env.ENABLE_HMR || 'true') === 'true';
 if (enableHMR && (env.NODE_ENV !== 'production')) {
@@ -63,6 +66,7 @@ app.get('/env.js', (req, res) => {
     UI_API_ENDPOINT: env.UI_API_ENDPOINT,
     UI_AUTH_ENDPOINT: env.UI_AUTH_ENDPOINT,
     GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID,
+    GOOGLE_MAP_KEY: env.GOOGLE_MAP_KEY,
   };
   res.send(`window.ENV = ${JSON.stringify(env2)}`);
 });

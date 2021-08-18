@@ -44,6 +44,9 @@ class MyNavBar extends React.Component {
               <LinkContainer exact to="/trackorder">
                 <Nav.Link>TRACK ORDER</Nav.Link>
               </LinkContainer>
+              <LinkContainer exact to="/getintouch">
+                <Nav.Link>GET IN TOUCH</Nav.Link>
+              </LinkContainer>
               <LinkContainer exact to="/orders">
                 <Nav.Link>ORDER MANAGER</Nav.Link>
               </LinkContainer>
@@ -165,7 +168,6 @@ export default class Page extends React.Component {
           </div>
         </div>
         <div style={{ position: 'absolute', bottom: '0px', width: '100%', height: '95px' }}>
-          {/* style={{ position: 'absolute', bottom: '0px', width: '100%' }} */}
           <Footer />
         </div>
       </div>

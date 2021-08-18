@@ -12,6 +12,7 @@ import OrderSuccess from './OrderSuccess.jsx';
 import OrderTracker from './OrderTracker.jsx';
 import OrderList from './OrderList.jsx';
 import StockList from './StockList.jsx';
+import GetInTouch from './GetInTouch.jsx';
 
 const routes = [
   { path: '/home', component: Home },
@@ -23,6 +24,7 @@ const routes = [
   { path: '/trackorder', component: OrderTracker },
   { path: '/orders/:id?', component: OrderList },
   { path: '/stocks', component: StockList },
+  { path: '/getintouch', component: GetInTouch },
   { path: '/issues/:id?', component: IssueList },
   { path: '/edit/:id', component: IssueEdit },
   { path: '/report', component: IssueReport },
